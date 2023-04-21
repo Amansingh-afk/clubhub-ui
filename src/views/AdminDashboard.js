@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import useAuth from "../hooks/UseAuth";
 
+import UnAuthorized from '../components/common/UnAuthorized'
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const { isAuthenticated, role, isLoading } = useAuth();
@@ -20,7 +21,7 @@ const AdminDashboard = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   } else if (role !== "admin") {
-    return <div>Unauthorized Access</div>;
+    return <UnAuthorized />
   } else {
     return (
       <div>
