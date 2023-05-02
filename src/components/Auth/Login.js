@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,10 +38,7 @@ const Login = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
-                  <label
-                    htmlFor="username"
-                    className="form-label-sm"
-                  >
+                  <label htmlFor="username" className="form-label-sm">
                     Username
                   </label>
                 </div>
@@ -54,10 +51,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <label
-                    htmlFor="password"
-                    className="form-label-sm"
-                  >
+                  <label htmlFor="password" className="form-label-sm">
                     Password
                   </label>
                 </div>
@@ -74,13 +68,13 @@ const Login = () => {
                   >
                     Remember me
                   </label>
-                  <a
-                    href="#"
+                  <Link
+                    to="/reset-password"
                     className="float-end"
                     style={{ fontSize: "small" }}
                   >
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
                 <button
                   type="submit"
@@ -93,7 +87,7 @@ const Login = () => {
               </form>
               <div className="text-center mt-3">
                 <span>New here?</span>
-                <a href="#"> Create an Account</a>
+                <Link to="/sign-in"> Create an Account</Link>
               </div>
             </div>
           </div>

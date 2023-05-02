@@ -1,17 +1,13 @@
 import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import useAuth from "../hooks/UseAuth";
 
+import ClubCard from "../components/Club/ClubCard";
+import EventCard from "../components/Event/EventCard";
+import Layout from "../components/Layout/Layout";
 const StudentDashboard = () => {
-  const navigate = useNavigate();
   const { isAuthenticated, role, isLoading } = useAuth();
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    navigate("/login", { replace: true });
-  };
-  
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -22,10 +18,32 @@ const StudentDashboard = () => {
     return <div>Unauthorized Access</div>;
   } else {
     return (
-      <div>
-        <h2>Welcome to Student Dashboard</h2>
-        <button onClick={logout}>Logout</button>
-      </div>
+      <Layout>
+        <div className="row ms-2">
+          <h4>Clubs </h4>
+          <div className="col-lg-4">
+            <ClubCard />
+          </div>
+          <div className="col-lg-4">
+            <ClubCard />
+          </div>
+          <div className="col-lg-4">
+            <ClubCard />
+          </div>
+        </div>
+        <div className="row ms-2 my-2">
+          <h4>Events..</h4>
+          <div className="col-lg-4">
+            <EventCard />
+          </div>
+          <div className="col-lg-4">
+            <EventCard />
+          </div>
+          <div className="col-lg-4">
+            <EventCard />
+          </div>
+        </div>
+      </Layout>
     );
   }
 };
