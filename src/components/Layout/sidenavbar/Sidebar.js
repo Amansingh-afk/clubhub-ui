@@ -11,7 +11,7 @@ const Sidebar = () => {
   };
 
   const handleMenuClick = (event, title) => {
-    console.log(title);
+    // event.preventDefault();
     setActive(title);
   };
 
