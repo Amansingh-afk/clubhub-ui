@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../Layout/Layout";
 import ClubCard from "./ClubCard";
 
 const ClubList = () => {

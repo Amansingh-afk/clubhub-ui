@@ -7,12 +7,7 @@ const ClubCard = ({ title, description, link }) => {
       <div class="card club_card shadow p-2">
         <div class="d-flex align-items-center">
           <div class="image">
-            <img
-              src={link}
-              class="rounded"
-              width="155"
-              height={140}
-            />
+            <img src={link} class="rounded" width={155} height={140} />
           </div>
 
           <div class="ms-3 w-100">
@@ -47,7 +42,9 @@ const ClubCard = ({ title, description, link }) => {
             </div>
 
             <div class="button mt-2 d-flex flex-row align-items-center">
-              <button class="btn btn-sm btn-outline-dark w-100">Register</button>
+              <button class="btn btn-sm btn-outline-dark w-100">
+                Register
+              </button>
               <button class="btn btn-sm btn-dark w-100 ms-2">check out</button>
             </div>
           </div>

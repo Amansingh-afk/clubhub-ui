@@ -1,10 +1,11 @@
 import React from "react";
 import Layout from "../Layout/Layout";
+import EventList from "./EventList";
 
 const Event = () => {
   return (
     <Layout>
-      <div>welcome to event page</div>;
+      <EventList />
     </Layout>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ isAdmin }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [active, setActive] = useState("");
 
@@ -25,7 +25,10 @@ const Sidebar = () => {
       </div>
       <ul className="nav-links">
         <li className={active === "Home" ? "active" : ""}>
-          <Link to="/" onClick={(e) => handleMenuClick(e, "Home")}>
+          <Link
+            to={isAdmin ? "/admin" : "/student"}
+            onClick={(e) => handleMenuClick(e, "Home")}
+          >
             <i className="bx bx-home-alt-2"></i>
             <span className="title">Home</span>
           </Link>

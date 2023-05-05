@@ -1,7 +1,25 @@
 import React from "react";
 import Layout from "../Layout/Layout";
+import { useState } from "react";
+
+const courses = [
+  { name: "BCA", semesters: [1, 2, 3, 4, 5, 6] },
+  { name: "MBA", semesters: [1, 2, 3, 4] },
+];
 
 const Profile = () => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [username, setUsername] = useState("");
+  const [course, setCourse] = useState("");
+  const [semester, setSemester] = useState("");
+
+  const handleCourseChange = (event) => {
+    const selectedCourse = event.target.value;
+    setCourse(selectedCourse);
+    setSemester("");
+  };
   return (
     <Layout>
       <div class="container">
@@ -17,16 +35,11 @@ const Profile = () => {
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a
-                      class="nav-link px-2 text-dark"
-                      href="https://www.bootdey.com/snippets/view/bs4-crud-users"
-                      target="__blank"
-                    >
+                    <a class="nav-link px-2 text-dark">
                       <i class="bx bx-bell mr-1"></i>
                       <span>Password</span>
                     </a>
                   </li>
-                  
                 </ul>
               </div>
             </div>
@@ -66,10 +79,13 @@ const Profile = () => {
                             </h4>
                             <p class="mb-0">@aman.s</p>
                             <div class="text-muted">
-                              <small>Dragon Slayers..</small>
+                              <small>bc/23/009</small>
                             </div>
                             <div class="mt-2">
-                              <button class="btn btn-outline-dark" type="button">
+                              <button
+                                class="btn btn-outline-dark"
+                                type="button"
+                              >
                                 <i class="bx bx-camera m-1"></i>
                                 <span>Change Photo</span>
                               </button>
@@ -94,125 +110,128 @@ const Profile = () => {
                       </ul>
                       <div class="tab-content pt-3">
                         <div class="tab-pane active">
-                          <form class="form" novalidate="">
-                            <div class="row">
-                              <div class="col">
-                                <div class="row">
-                                  <div class="col">
-                                    <div class="form-group">
-                                      <label>Full Name</label>
-                                      <input
-                                        class="form-control"
-                                        type="text"
-                                        name="name"
-                                        placeholder="Aman Singh"
-                                        value="Aman Singh"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="form-group">
-                                      <label>Username</label>
-                                      <input
-                                        class="form-control"
-                                        type="text"
-                                        name="username"
-                                        placeholder="aman.s"
-                                        value="aman.s"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col">
-                                    <div class="form-group">
-                                      <label>Email</label>
-                                      <input
-                                        class="form-control"
-                                        type="text"
-                                        placeholder="user@example.com"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col mb-3">
-                                    <div class="form-group">
-                                      <label>About</label>
-                                      <textarea
-                                        class="form-control"
-                                        rows="5"
-                                        placeholder="My Bio"
-                                      ></textarea>
-                                    </div>
-                                  </div>
-                                </div>
+                          <form>
+                            <div className="row mb-3">
+                              <div className="col-md-6">
+                                <label
+                                  htmlFor="fullName"
+                                  className="form-label"
+                                >
+                                  Full Name:
+                                </label>
+                                <input
+                                  type="text"
+                                  id="fullName"
+                                  className="form-control"
+                                  value={fullName}
+                                  onChange={(event) =>
+                                    setFullName(event.target.value)
+                                  }
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label
+                                  htmlFor="username"
+                                  className="form-label"
+                                >
+                                  Username:
+                                </label>
+                                <input
+                                  type="text"
+                                  id="username"
+                                  className="form-control"
+                                  value={username}
+                                  onChange={(event) =>
+                                    setUsername(event.target.value)
+                                  }
+                                />
                               </div>
                             </div>
-                            <div class="row">
-                              
-                              <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                <div class="mb-2">
-                                  <b>Keeping in Touch</b>
-                                </div>
-                                <div class="row">
-                                  <div class="col">
-                                    <label>Email Notifications</label>
-                                    <div class="custom-controls-stacked px-2">
-                                      <div class="custom-control custom-checkbox">
-                                        <input
-                                          type="checkbox"
-                                          class="custom-control-input"
-                                          id="notifications-blog"
-                                          checked=""
-                                        />
-                                        <label
-                                          class="custom-control-label"
-                                          for="notifications-blog"
-                                        >
-                                          Blog posts
-                                        </label>
-                                      </div>
-                                      <div class="custom-control custom-checkbox">
-                                        <input
-                                          type="checkbox"
-                                          class="custom-control-input"
-                                          id="notifications-news"
-                                          checked=""
-                                        />
-                                        <label
-                                          class="custom-control-label"
-                                          for="notifications-news"
-                                        >
-                                          Newsletter
-                                        </label>
-                                      </div>
-                                      <div class="custom-control custom-checkbox">
-                                        <input
-                                          type="checkbox"
-                                          class="custom-control-input"
-                                          id="notifications-offers"
-                                          checked=""
-                                        />
-                                        <label
-                                          class="custom-control-label"
-                                          for="notifications-offers"
-                                        >
-                                          Personal Offers
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                            <div className="row mb-3">
+                              <div className="col-md-6">
+                                <label htmlFor="email" className="form-label">
+                                  Email:
+                                </label>
+                                <input
+                                  type="email"
+                                  id="email"
+                                  className="form-control"
+                                  value={email}
+                                  onChange={(event) =>
+                                    setEmail(event.target.value)
+                                  }
+                                />
+                              </div>
+                              <div className="col-md-6">
+                                <label htmlFor="phoneNo" className="form-label">
+                                  Phone No:
+                                </label>
+                                <input
+                                  type="tel"
+                                  id="phoneNo"
+                                  className="form-control"
+                                  value={phoneNo}
+                                  onChange={(event) =>
+                                    setPhoneNo(event.target.value)
+                                  }
+                                />
                               </div>
                             </div>
-                            <div class="row">
-                              <div class="col d-flex justify-content-end">
-                                <button class="btn btn-outline-dark" type="submit">
-                                  Save Changes
-                                </button>
+                            <div className="row mb-3">
+                              <div className="col-md-6">
+                                <label htmlFor="course" className="form-label">
+                                  Course:
+                                </label>
+                                <select
+                                  id="course"
+                                  className="form-select"
+                                  value={course}
+                                  onChange={handleCourseChange}
+                                >
+                                  <option value="">--Select Course--</option>
+                                  {courses.map((course) => (
+                                    <option
+                                      key={course.name}
+                                      value={course.name}
+                                    >
+                                      {course.name}
+                                    </option>
+                                  ))}
+                                </select>
                               </div>
+                              {course && (
+                                <div className="col-md-6">
+                                  <label
+                                    htmlFor="semester"
+                                    className="form-label"
+                                  >
+                                    Semester:
+                                  </label>
+                                  <select
+                                    id="semester"
+                                    className="form-select"
+                                    value={semester}
+                                    onChange={(event) =>
+                                      setSemester(event.target.value)
+                                    }
+                                  >
+                                    <option value="">
+                                      --Select Semester--
+                                    </option>
+                                    {courses
+                                      .find((c) => c.name === course)
+                                      .semesters.map((s) => (
+                                        <option key={s} value={s}>
+                                          {s}
+                                        </option>
+                                      ))}
+                                  </select>
+                                </div>
+                              )}
                             </div>
+                            <button type="submit" className="btn btn-primary">
+                              Save Changes
+                            </button>
                           </form>
                         </div>
                       </div>

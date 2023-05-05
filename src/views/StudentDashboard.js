@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 
 import useAuth from "../hooks/UseAuth";
 
+import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
 import EventCard from "../components/Event/EventCard";
 import Layout from "../components/Layout/Layout";
@@ -38,7 +39,8 @@ const StudentDashboard = () => {
   const event = [
     {
       title: "Ghapa ghap",
-      imgUrl: "https://media2.giphy.com/media/75wZWLEbYBx7i/200.webp?cid=ecf05e471s0fawaj0hfb0je765mrfyq68uycywkkaoo52ei7&ep=v1_gifs_search&rid=200.webp&ct=g",
+      imgUrl:
+        "https://media2.giphy.com/media/75wZWLEbYBx7i/200.webp?cid=ecf05e471s0fawaj0hfb0je765mrfyq68uycywkkaoo52ei7&ep=v1_gifs_search&rid=200.webp&ct=g",
     },
     {
       title: "AdharShilla 2023",
@@ -53,7 +55,7 @@ const StudentDashboard = () => {
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   } else if (role !== "student") {
-    return <div>Unauthorized Access</div>;
+    return <UnAuthorized />;
   } else {
     return (
       <Layout>
