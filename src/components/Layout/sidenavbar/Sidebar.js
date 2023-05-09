@@ -1,18 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ isAdmin }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [active, setActive] = useState("");
+  const [activeItem, setActiveItem] = useState(null);
 
-  const toggleMenu = () => {
-    setIsExpanded(!isExpanded);
+  const MENU_ITEMS = [
+    { title: "Home", icon: "bx bx-home-alt-2", path: isAdmin ? "/admin" : "/student" },
+    { title: "Clubs", icon: "bx bx-group", path: "/club" },
+    { title: "Events", icon: "bx bx-calendar-event", path: "/event" },
+    { title: "Profile", icon: "bx bx-user", path: "/profile" },
+    { title: "Setting", icon: "bx bx-cog", path: "#" },
+  ];
+
+  useEffect(() => {
+    const savedActiveItem = localStorage.getItem("active-menu-btn");
+    const savedIsExpanded = localStorage.getItem("isMenuExpanded");
+    setActiveItem(findMenuItem(savedActiveItem));
+    setIsExpanded(savedIsExpanded === "true");
+  }, []);
+
+  const findMenuItem = (title) => {
+    return MENU_ITEMS.find((item) => item.title === title) || MENU_ITEMS[0];
   };
 
-  const handleMenuClick = (event, title) => {
-    // event.preventDefault();
-    setActive(title);
+  const handleItemClick = (item) => {
+    localStorage.setItem("active-menu-btn", item.title);
+    localStorage.setItem("isMenuExpanded", isExpanded);
+    setActiveItem(item);
+  };
+
+  const handleMenuToggle = () => {
+    setIsExpanded(!isExpanded);
   };
 
   const menuIconClass = isExpanded ? "bx-menu-alt-right" : "bx-menu";
@@ -21,47 +41,25 @@ const Sidebar = ({ isAdmin }) => {
     <section className={`sidebar ${isExpanded ? "expand" : ""}`}>
       <div className="nav-header">
         <p className="logo">~ClubHub~</p>
-        <i className={`bx ${menuIconClass} btn-menu`} onClick={toggleMenu}></i>
+        <i
+          className={`bx ${menuIconClass} btn-menu`}
+          onClick={handleMenuToggle}
+        />
       </div>
       <ul className="nav-links">
-        <li className={active === "Home" ? "active" : ""}>
-          <Link
-            to={isAdmin ? "/admin" : "/student"}
-            onClick={(e) => handleMenuClick(e, "Home")}
+        {MENU_ITEMS.map((item) => (
+          <li
+            key={item.title}
+            className={item.title === activeItem ? "active" : ""}
+            onClick={() => handleItemClick(item.title)}
           >
-            <i className="bx bx-home-alt-2"></i>
-            <span className="title">Home</span>
-          </Link>
-          <span className="tooltip">Home</span>
-        </li>
-        <li className={active === "Clubs" ? "active" : ""}>
-          <Link to="/club" onClick={(e) => handleMenuClick(e, "Clubs")}>
-            <i className="bx bx-group"></i>
-            <span className="title">Clubs</span>
-          </Link>
-          <span className="tooltip">Clubs</span>
-        </li>
-        <li className={active === "Events" ? "active" : ""}>
-          <Link to="/event" onClick={(e) => handleMenuClick(e, "Events")}>
-            <i className="bx bx-calendar-event"></i>{" "}
-            <span className="title">Events</span>
-          </Link>
-          <span className="tooltip">Events</span>
-        </li>
-        <li className={active === "Profile" ? "active" : ""}>
-          <Link to="/profile" onClick={(e) => handleMenuClick(e, "Profile")}>
-            <i className="bx bx-user"></i>
-            <span className="title">Profile</span>
-          </Link>
-          <span className="tooltip">Profile</span>
-        </li>
-        <li className={active === "Setting" ? "active" : ""}>
-          <a href="#" onClick={(e) => handleMenuClick(e, "Setting")}>
-            <i className="bx bx-cog"></i>
-            <span className="title">Setting</span>
-          </a>
-          <span className="tooltip">Setting</span>
-        </li>
+            <Link to={item.path}>
+              <i className={item.icon} />
+              <span className="title">{item.title}</span>
+            </Link>
+            <span className="tooltip">{item.title}</span>
+          </li>
+        ))}
       </ul>
     </section>
   );
