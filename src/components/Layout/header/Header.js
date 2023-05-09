@@ -45,12 +45,12 @@ function Header() {
       </ul>
       <ul className="navbar-nav left-nav">
         <li className="nav-item">
-          <a className="nav-link text-center" href="#">
+          <a className="nav-link header-profile text-center" href="#">
             <i className="bx bx-bell bx-fw "></i>
           </a>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link text-center" href="#" onClick={toggleDropdown}>
+          <a className="nav-link header-profile text-center" href="#" onClick={toggleDropdown}>
             <i className="bx bx-user bx-fw"></i> user name
           </a>
           {isDropdownOpen && (

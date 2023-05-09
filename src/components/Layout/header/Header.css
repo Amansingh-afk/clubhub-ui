@@ -62,7 +62,7 @@
   border-radius: 0%;
   transition: all 0.3s ease;
 }
-.nav-link:hover {
+.header-profile:hover {
   border-radius: 10px;
   background-color: var(--link-color-active-bg);
   color: var(--link-color-active);

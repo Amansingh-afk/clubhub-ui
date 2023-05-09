@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const courses = [
   { name: "BCA", semesters: [1, 2, 3, 4, 5, 6] },
@@ -29,16 +30,16 @@ const Profile = () => {
               <div class="e-navlist e-navlist--active-bg">
                 <ul class="nav">
                   <li class="nav-item">
-                    <a class="nav-link px-2 active text-dark" href="#">
+                    <span class="nav-link px-2 active text-dark">
                       <i class="bx bx-bar-chart mr-1"></i>
                       <span>Settings</span>
-                    </a>
+                    </span>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link px-2 text-dark">
+                    <Link class="nav-link px-2 text-dark" to="/change-password">
                       <i class="bx bx-bell mr-1"></i>
                       <span>Password</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

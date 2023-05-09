@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ClubCard.css";
 
-const ClubCard = ({ title, description, link }) => {
+const ClubCard = ({ club }) => {
+  const link = `/club/${club.id}`;
   return (
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center m-2">
       <div class="card club_card shadow p-2">
         <div class="d-flex align-items-center">
           <div class="image">
-            <img src={link} class="rounded" width={155} height={140} />
+            <img src={club.link} class="rounded" width={155} height={140} />
           </div>
 
           <div class="ms-3 w-100">
@@ -20,9 +22,9 @@ const ClubCard = ({ title, description, link }) => {
                 whiteSpace: "nowrap",
               }}
             >
-              {title}
+              {club.title}
             </h4>
-            <span>{description}</span>
+            <span>{club.description}</span>
 
             <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
               <div class="d-flex flex-column">
@@ -45,7 +47,9 @@ const ClubCard = ({ title, description, link }) => {
               <button class="btn btn-sm btn-outline-dark w-100">
                 Register
               </button>
-              <button class="btn btn-sm btn-dark w-100 ms-2">check out</button>
+              <Link class="btn btn-sm btn-dark w-100 ms-2" to={link}>
+                check out
+              </Link>
             </div>
           </div>
         </div>
