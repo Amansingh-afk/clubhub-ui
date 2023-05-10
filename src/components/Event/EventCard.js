@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 const EventCard = ({ event }) => {
   const link = `/event/sadfklfjlkwoie943`;
   return (
-    <div class="card shadow-lg rounded" style={{ width: "18rem" }}>
-      <img
-        class="card-img-top"
-        src={event.imgUrl}
-        alt="Card image cap"
-        style={{ height: "150px", objectFit: "cover" }}
-      />
+    <div class="card shadow m-2">
+      <div class="card-header bg-dark text-white">Featured</div>
       <div class="card-body">
-        <h5 class="card-title font-weight-bold">{event.title}</h5>
-        <Link to={link} class="btn btn-outline-dark btn-sm">
-          Learn more
-        </Link>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <a href="#" class="btn btn-dark shadow-sm">
+          Go somewhere
+        </a>
       </div>
-    </div>
+    </div> 
   );
 };
 

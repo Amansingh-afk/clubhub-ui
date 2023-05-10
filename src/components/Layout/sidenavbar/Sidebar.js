@@ -4,10 +4,14 @@ import "./Sidebar.css";
 
 const Sidebar = ({ isAdmin }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItem, setActiveItem] = useState("");
 
   const MENU_ITEMS = [
-    { title: "Home", icon: "bx bx-home-alt-2", path: isAdmin ? "/admin" : "/student" },
+    {
+      title: "Home",
+      icon: "bx bx-home-alt-2",
+      path: isAdmin ? "/admin" : "/student",
+    },
     { title: "Clubs", icon: "bx bx-group", path: "/club" },
     { title: "Events", icon: "bx bx-calendar-event", path: "/event" },
     { title: "Profile", icon: "bx bx-user", path: "/profile" },
@@ -17,18 +21,14 @@ const Sidebar = ({ isAdmin }) => {
   useEffect(() => {
     const savedActiveItem = localStorage.getItem("active-menu-btn");
     const savedIsExpanded = localStorage.getItem("isMenuExpanded");
-    setActiveItem(findMenuItem(savedActiveItem));
+    setActiveItem(savedActiveItem);
     setIsExpanded(savedIsExpanded === "true");
   }, []);
-
-  const findMenuItem = (title) => {
-    return MENU_ITEMS.find((item) => item.title === title) || MENU_ITEMS[0];
-  };
 
   const handleItemClick = (item) => {
     localStorage.setItem("active-menu-btn", item.title);
     localStorage.setItem("isMenuExpanded", isExpanded);
-    setActiveItem(item);
+    setActiveItem(item.title);
   };
 
   const handleMenuToggle = () => {
@@ -46,12 +46,13 @@ const Sidebar = ({ isAdmin }) => {
           onClick={handleMenuToggle}
         />
       </div>
+
       <ul className="nav-links">
         {MENU_ITEMS.map((item) => (
           <li
             key={item.title}
             className={item.title === activeItem ? "active" : ""}
-            onClick={() => handleItemClick(item.title)}
+            onClick={() => handleItemClick(item)}
           >
             <Link to={item.path}>
               <i className={item.icon} />

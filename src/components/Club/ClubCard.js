@@ -5,8 +5,8 @@ import "./ClubCard.css";
 const ClubCard = ({ club }) => {
   const link = `/club/${club.id}`;
   return (
-    <div class="container d-flex justify-content-center m-2">
-      <div class="card club_card shadow p-2">
+    <div class="container d-flex justify-content-center my-2 mx-0">
+      <div class="card club_card p-2">
         <div class="d-flex align-items-center">
           <div class="image">
             <img src={club.link} class="rounded" width={155} height={140} />
@@ -44,11 +44,8 @@ const ClubCard = ({ club }) => {
             </div>
 
             <div class="button mt-2 d-flex flex-row align-items-center">
-              <button class="btn btn-sm btn-outline-dark w-100">
+              <Link class="btn btn-sm btn-outline-dark w-100 ms-2" to={link}>
                 Register
-              </button>
-              <Link class="btn btn-sm btn-dark w-100 ms-2" to={link}>
-                check out
               </Link>
             </div>
           </div>

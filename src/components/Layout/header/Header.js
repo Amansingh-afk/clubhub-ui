@@ -49,21 +49,23 @@ function Header() {
             <i className="bx bx-bell bx-fw "></i>
           </a>
         </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link header-profile text-center" href="#" onClick={toggleDropdown}>
+        <li className="dropdown">
+          <button
+            className="btn btn-transparent dropdown-toggle header-profile"
+            type="button"
+            onClick={toggleDropdown}
+          >
             <i className="bx bx-user bx-fw"></i> user name
-          </a>
+          </button>
           {isDropdownOpen && (
-            <div className="dropdown-menu dropdown-menu-right dropdown-menu-left text-center show">
-              <a className="dropdown-item p-0" href="#">
+            <div className="dropdown-menu text-dark p-0 show">
+              <a className="dropdown-item px-2" type="button">
                 Profile
               </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item p-0" href="#">
+              <a className="dropdown-item px-2" type="button">
                 Settings
               </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item p-0" onClick={logout} href="#">
+              <a className="dropdown-item px-2" type="button" onClick={logout}>
                 Logout
               </a>
             </div>

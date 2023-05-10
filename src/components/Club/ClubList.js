@@ -30,7 +30,7 @@ const ClubList = () => {
   ];
   return (
     <>
-      <h2>Your clubs </h2>
+      <h2 className="bg-dark text-light">Your clubs </h2>
       <div className="row">
         {clubs.map((item) => (
           <div className="col-lg-5">
