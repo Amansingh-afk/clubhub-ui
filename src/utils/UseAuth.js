@@ -4,26 +4,26 @@ import { useNavigate } from "react-router-dom";
 const useAuth = () => {
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [role, setRole] = useState(null);
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem('role');
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token) {
       navigate("/login");
       setIsAuthenticated(false);
-      setRole(null);
+      setUser(null);
       setIsLoading(false);
     } else {
       setIsAuthenticated(true);
-      setRole(role); // replace with actual role check
+      setUser(user);
       setIsLoading(false);
     }
   }, [navigate]);
 
-  return { isAuthenticated, role, isLoading };
+  return { isAuthenticated, user, isLoading };
 };
 
 export default useAuth;

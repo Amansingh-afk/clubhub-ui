@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-import useAuth from "../hooks/UseAuth";
+import useAuth from "../utils/UseAuth";
 
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
@@ -8,7 +8,7 @@ import EventCard from "../components/Event/EventCard";
 import Layout from "../components/Layout/Layout";
 
 const StudentDashboard = () => {
-  const { isAuthenticated, role, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -61,7 +61,7 @@ const StudentDashboard = () => {
   ];
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
-  } else if (role !== "student") {
+  } else if (user.role !== "student") {
     return <UnAuthorized />;
   } else {
     return (

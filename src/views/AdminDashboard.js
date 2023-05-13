@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-import useAuth from "../hooks/UseAuth";
+import useAuth from "../utils/UseAuth";
 
 import UnAuthorized from "../components/Common/UnAuthorized";
 import Layout from "../components/Layout/Layout";
@@ -9,7 +9,7 @@ import ClubCard from "../components/Club/ClubCard";
 import EventCard from "../components/Event/EventCard";
 
 const AdminDashboard = () => {
-  const { isAuthenticated, role, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
   const [clubsToShow, setClubsToShow] = useState(4);
 
   if (isLoading) {
@@ -91,7 +91,7 @@ const AdminDashboard = () => {
   ];
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
-  } else if (role !== "admin") {
+  } else if (user.role !== "admin") {
     return <UnAuthorized />;
   } else {
     return (

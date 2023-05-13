@@ -1,22 +1,29 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { login } from "../../utils/api";
+
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin") {
-      localStorage.setItem("token", "admin-token");
-      localStorage.setItem("role", "admin");
-      navigate("/admin", { replace: true });
-    } else if (username === "student" && password === "student") {
-      localStorage.setItem("token", "student-token");
-      localStorage.setItem("role", "student");
-      navigate("/student", { replace: true });
-    } else {
+    try {
+      const { user, token } = await login({
+        username: username,
+        password: password,
+      });
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      navigate(
+        user.role === "admin" ? "/admin" : user.role === "super_admin" ? "/super-admin" : "/student",
+        { replace: true, }
+      );
+    } catch (error) {
+      console.error(error);
       alert("Invalid credentials");
     }
   };

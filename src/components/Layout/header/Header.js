@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import useAuth from "../../../utils/UseAuth";
 function Header() {
   const navigate = useNavigate();
+  const { user, isLoading } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.removeItem("user");
     navigate("/login", { replace: true });
   };
 
@@ -55,7 +60,7 @@ function Header() {
             type="button"
             onClick={toggleDropdown}
           >
-            <i className="bx bx-user bx-fw"></i> user name
+            <i className="bx bx-user bx-fw"></i> {user.name}
           </button>
           {isDropdownOpen && (
             <div className="dropdown-menu text-dark p-0 show">

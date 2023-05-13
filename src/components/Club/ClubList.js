@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ClubCard from "./ClubCard";
+import { getAllClubs } from "../../utils/api";
 
 const ClubList = () => {
+
+  useEffect(()=> {
+    const fetchAllClubs = async() => {
+      try {
+        const clubsx = await getAllClubs();
+        console.log(clubsx);
+        // Handle the retrieved clubs data
+      } catch (error) {
+        console.error('Error fetching clubs:', error);
+        // Handle the error
+      }
+    }
+
+    fetchAllClubs();
+  }, []);
   const clubs = [
     {
       id: "fas43iewoiwasu94wfn84",
@@ -30,10 +46,10 @@ const ClubList = () => {
   ];
   return (
     <>
-      <h2 className="bg-dark text-light">Your clubs </h2>
-      <div className="row">
+      <h2 className="px-2 py-1 bg-dark text-light rounded shadow">Your clubs </h2>
+      <div className="row my-5">
         {clubs.map((item) => (
-          <div className="col-lg-5">
+          <div className="col-lg-6 my-2">
             <ClubCard club={item} />
           </div>
         ))}

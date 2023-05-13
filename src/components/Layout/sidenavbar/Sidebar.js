@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = ({ isAdmin }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const Sidebar = ({ isAdmin, isStudent }) => {
+  const [isExpanded, setIsExpanded] = useState(true);
   const [activeItem, setActiveItem] = useState("");
 
   const MENU_ITEMS = [
     {
       title: "Home",
       icon: "bx bx-home-alt-2",
-      path: isAdmin ? "/admin" : "/student",
+      path: isAdmin ? "/admin" : isStudent ? "/student" : "/super-admin",
     },
     { title: "Clubs", icon: "bx bx-group", path: "/club" },
     { title: "Events", icon: "bx bx-calendar-event", path: "/event" },
     { title: "Profile", icon: "bx bx-user", path: "/profile" },
     { title: "Setting", icon: "bx bx-cog", path: "#" },
-  ];
+  ].filter(
+    (item) => isAdmin || isStudent || ["Home", "Clubs"].includes(item.title)
+  );
 
   useEffect(() => {
     const savedActiveItem = localStorage.getItem("active-menu-btn");
