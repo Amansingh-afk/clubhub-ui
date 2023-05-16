@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const EventCard = ({ event }) => {
   const link = `/event/sadfklfjlkwoie943`;
   return (
-    <div class="card shadow m-2">
-      <div class="card-header bg-dark text-white">Featured</div>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">
+    <div className="card shadow m-2">
+      <div className="card-header bg-dark text-white">Featured</div>
+      <div className="card-body">
+        <h5 className="card-title">Special title treatment</h5>
+        <p className="card-text">
           With supporting text below as a natural lead-in to additional content.
         </p>
-        <a href="#" class="btn btn-dark shadow-sm">
+        <a href="#" className="btn btn-dark shadow-sm">
           Go somewhere
         </a>
       </div>

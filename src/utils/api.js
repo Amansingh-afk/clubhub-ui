@@ -24,7 +24,24 @@ export const getAllClubs = async () => {
 };
 
 export const createClub = async (clubData) => {
-  console.log(clubData)
   const { data } = await api.post("/create-club", clubData);
   return data;
+};
+
+export const getAdminClub = async () => {
+  const { data } = await api.get("/club");
+  return data;
+};
+
+export const getClubData = async (clubId) => {
+  const { data } = await api.get(`/club/${clubId}`);
+  return data;
+};
+
+export const updateClubDetails = async (clubId, clubData) => {
+  await api.put(`/club/manage/${clubId}`, clubData);
+};
+
+export const subscribeMembership = async (memberInfo) => {
+  await api.post("/subscribe", memberInfo);
 };

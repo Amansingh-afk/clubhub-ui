@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = ({ isAdmin, isStudent }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+const Sidebar = ({ isAdmin, isStudent, isMenuExpanded, onMenuToggle }) => {
   const [activeItem, setActiveItem] = useState("");
 
   const MENU_ITEMS = [
@@ -22,31 +21,21 @@ const Sidebar = ({ isAdmin, isStudent }) => {
 
   useEffect(() => {
     const savedActiveItem = localStorage.getItem("active-menu-btn");
-    const savedIsExpanded = localStorage.getItem("isMenuExpanded");
     setActiveItem(savedActiveItem);
-    setIsExpanded(savedIsExpanded === "true");
   }, []);
 
   const handleItemClick = (item) => {
     localStorage.setItem("active-menu-btn", item.title);
-    localStorage.setItem("isMenuExpanded", isExpanded);
     setActiveItem(item.title);
   };
 
-  const handleMenuToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const menuIconClass = isExpanded ? "bx-menu-alt-right" : "bx-menu";
+  const menuIconClass = isMenuExpanded ? "bx-menu-alt-right" : "bx-menu";
 
   return (
-    <section className={`sidebar ${isExpanded ? "expand" : ""}`}>
+    <section className={`sidebar ${isMenuExpanded ? "expand" : ""}`}>
       <div className="nav-header">
         <p className="logo">~ClubHub~</p>
-        <i
-          className={`bx ${menuIconClass} btn-menu`}
-          onClick={handleMenuToggle}
-        />
+        <i className={`bx ${menuIconClass} btn-menu`} onClick={onMenuToggle} />
       </div>
 
       <ul className="nav-links">

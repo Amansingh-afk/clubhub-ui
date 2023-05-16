@@ -109,16 +109,16 @@ const Profile = () => {
               role="tabpanel"
               aria-labelledby="v-tabs-home-tab"
             >
-              <div class="row">
-                <div class="col mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="e-profile">
-                        <div class="row">
-                          <div class="col-12 col-sm-auto mb-3">
-                            <div class="mx-auto" style={{ width: "140px" }}>
+              <div className="row">
+                <div className="col mb-3">
+                  <div className="card">
+                    <div className="card-body">
+                      <div className="e-profile">
+                        <div className="row">
+                          <div className="col-12 col-sm-auto mb-3">
+                            <div className="mx-auto" style={{ width: "140px" }}>
                               <div
-                                class="d-flex justify-content-center align-items-center rounded"
+                                className="d-flex justify-content-center align-items-center rounded"
                                 style={{
                                   height: "140px",
                                   backgroundColor: "rgb(233, 236, 239)",
@@ -135,44 +135,44 @@ const Profile = () => {
                               </div>
                             </div>
                           </div>
-                          <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                            <div class="text-center text-sm-left mb-2 mb-sm-0">
-                              <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                          <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                            <div className="text-center text-sm-left mb-2 mb-sm-0">
+                              <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
                                 Aman Singh
                               </h4>
-                              <p class="mb-0">@aman.s</p>
-                              <div class="text-muted">
+                              <p className="mb-0">@aman.s</p>
+                              <div className="text-muted">
                                 <small>bc/23/009</small>
                               </div>
-                              <div class="mt-2">
+                              <div className="mt-2">
                                 <button
-                                  class="btn btn-outline-dark"
+                                  className="btn btn-outline-dark"
                                   type="button"
                                 >
-                                  <i class="bx bx-camera m-1"></i>
+                                  <i className="bx bx-camera m-1"></i>
                                   <span>Change Photo</span>
                                 </button>
                               </div>
                             </div>
-                            <div class="text-center text-sm-right">
-                              <span class="badge badge-secondary">
+                            <div className="text-center text-sm-right">
+                              <span className="badge badge-secondary">
                                 administrator
                               </span>
-                              <div class="text-muted">
+                              <div className="text-muted">
                                 <small>Joined 09 Feb 2023</small>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <ul class="nav nav-tabs">
-                          <li class="nav-item">
-                            <a href="" class="active nav-link">
+                        <ul className="nav nav-tabs">
+                          <li className="nav-item">
+                            <a href="" className="active nav-link">
                               Settings
                             </a>
                           </li>
                         </ul>
-                        <div class="tab-content pt-3">
-                          <div class="tab-pane active">
+                        <div className="tab-content pt-3">
+                          <div className="tab-pane active">
                             <form>
                               <div className="row mb-3">
                                 <div className="col-md-6">
@@ -309,25 +309,25 @@ const Profile = () => {
                   </div>
                 </div>
 
-                <div class="col-12 col-md-3 mb-3">
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="px-xl-3">
-                        <button class="btn btn-block btn-outline-dark">
-                          <i class="bx bx-sign-out"></i>
+                <div className="col-12 col-md-3 mb-3">
+                  <div className="card mb-3">
+                    <div className="card-body">
+                      <div className="px-xl-3">
+                        <button className="btn btn-block btn-outline-dark">
+                          <i className="bx bx-sign-out"></i>
                           <span>Logout</span>
                         </button>
                       </div>
                     </div>
                   </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <h6 class="card-title font-weight-bold">Support</h6>
-                      <p class="card-text">
+                  <div className="card">
+                    <div className="card-body">
+                      <h6 className="card-title font-weight-bold">Support</h6>
+                      <p className="card-text">
                         Get fast, free help from our friendly <b>BCA VI </b>
                         assistants.
                       </p>
-                      <button type="button" class="btn btn-outline-dark">
+                      <button type="button" className="btn btn-outline-dark">
                         Contact Us
                       </button>
                     </div>

@@ -1,18 +1,33 @@
-import React, { useState } from "react";
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Layout from "../Layout/Layout";
-import { createClub } from "../../utils/api";
+import ImageSelector from "../Common/ImageSelector";
+import Spinner from "../Common/Spinner";
+import { createClub, getClubData, updateClubDetails } from "../../utils/api";
 
-const ClubForm = () => {
+const ClubForm = ({ isEdit }) => {
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   const [bannerImage, setBannerImage] = useState(null);
   const [clubName, setClubName] = useState("");
   const [adminName, setAdminName] = useState("");
   const [description, setDescription] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleBannerImageChange = (event) => {
-    const file = event.target.files[0];
-    setBannerImage(URL.createObjectURL(file));
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectImage = (banner) => {
+    setBannerImage(banner);
   };
 
   const handleSubmit = async (e) => {
@@ -24,66 +39,101 @@ const ClubForm = () => {
       banner: bannerImage,
     };
     try {
-      const { data } = await createClub(newClub);
+      if (isEdit) {
+        await updateClubDetails(id, newClub);
+        toast.success("Club details updated !");
+        setTimeout(() => {
+          navigate(`/club/${id}`);
+        }, 1000);
+      } else {
+        await createClub(newClub);
+        toast.success("Club Created succesfully !");
+      }
     } catch (err) {
       toast.error(err.response.data.error);
     }
-    // Reset form fields
-    setBannerImage(null);
-    setClubName("");
-    setAdminName("");
-    setDescription("");
   };
 
+  useEffect(() => {
+    const fetchClubDetails = async () => {
+      try {
+        const clubDetails = await getClubData(id);
+        setClubName(clubDetails.club.name);
+        setAdminName(clubDetails.club.admin.username);
+        setDescription(clubDetails.club.description);
+        setBannerImage(clubDetails.club.banner);
+      } catch (err) {
+        toast.error(err.response.data.error);
+      }
+    };
+
+    if (isEdit) {
+      fetchClubDetails();
+    }
+  }, [isEdit]);
+
+  if (isEdit && clubName === "") {
+    return (
+      <div>
+        <Layout>
+          <Spinner />
+        </Layout>
+      </div>
+    );
+  }
   return (
     <Layout>
+      <ImageSelector
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSelect={handleSelectImage}
+      />
+
       <div className="container">
-        <h1 className="text-light bg-dark px-3 rounded">Create Club</h1>
+        <h1 className="text-light bg-dark px-3 rounded">
+          {isEdit ? "Edit Club" : "Create Club"}
+        </h1>
 
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-12 col-sm-auto mb-3">
               <div className="mx-auto" style={{ width: "500px" }}>
                 <div
-                  className="d-flex justify-content-center border border-dark align-items-center rounded"
+                  className="d-flex justify-content-center border border-dark align-items-center rounded shadow"
                   style={{
                     height: "240px",
                     backgroundColor: "rgb(233, 236, 239)",
-                    backgroundImage: `url(${bannerImage})`,
+                    backgroundImage: `url(${bannerImage?.url})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
                 >
                   {!bannerImage && (
-                    <span
-                      style={{
-                        color: "rgb(166, 168, 170)",
-                        font: "bold 8pt poppins",
-                      }}
-                    >
-                      choose club banner
-                    </span>
+                    <>
+                      <span
+                        style={{
+                          color: "rgb(166, 168, 170)",
+                          font: "bold 8pt poppins",
+                        }}
+                      >
+                        choose club banner
+                      </span>
+                      <img src={bannerImage?.url} alt=" banner image" />
+                    </>
                   )}
                 </div>
               </div>
             </div>
             <div className="col mb-3">
               <div className="mt-2">
-                <label
-                  htmlFor="bannerUpload"
-                  className="btn btn-outline-dark shadow"
+                <button
+                  onClick={handleOpenModal}
+                  type="button"
+                  className="btn btn-outline-dark btn-rounded shadow"
                 >
-                  <i className="bx bx-camera m-1"></i>
-                  <span>Change Photo</span>
-                  <input
-                    type="file"
-                    id="bannerUpload"
-                    accept="image/*"
-                    onChange={handleBannerImageChange}
-                    style={{ opacity: 0, position: "absolute", zIndex: -1 }}
-                    
-                  />
-                </label>
+                  <i className="bx bx-camera"></i>
+                  Choose banner
+                </button>
               </div>
               <div className="mt-3">
                 <label htmlFor="clubName" className="form-label">
