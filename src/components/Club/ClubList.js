@@ -14,7 +14,7 @@ const ClubList = ({ isAdmin, isStudent }) => {
         const { clubs } = await getAllClubs();
         setClubs(clubs);
 
-        if (isAdmin || isStudent) {
+        if (isAdmin) {
           const { club } = await getAdminClub();
           setAdminClub({ ...club, loading: false });
         }
@@ -52,10 +52,8 @@ const ClubList = ({ isAdmin, isStudent }) => {
             </>
           )}
 
-          <h2 className="px-2 py-1 bg-dark text-light rounded shadow">
-            Clubs
-          </h2>
-          <div className="row my-5">
+          <h2 className="px-2 py-1 bg-dark text-light rounded shadow">Clubs</h2>
+          <div className="row my-4">
             {clubs.map((item) => (
               <div className="col-lg-6 my-2" key={item.id}>
                 <ClubCard club={item} />

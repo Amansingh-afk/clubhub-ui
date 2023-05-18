@@ -39,3 +39,15 @@ code {
     monospace;
 }
 
+@media (max-width: 768px) {
+  /* Mobile-specific styles */
+  .club_banner {
+    max-height: 22vh;
+  }
+}
+
+
+
+
+
+

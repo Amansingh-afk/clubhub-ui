@@ -267,3 +267,11 @@
   margin: 20px;
   white-space: nowrap;
 }
+
+
+@media (max-width: 768px) {
+  /* Mobile-specific styles */
+ .sidebar{
+  display: none;
+ }
+}

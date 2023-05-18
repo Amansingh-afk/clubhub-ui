@@ -32,59 +32,7 @@ const SuperAdminDashboard = () => {
   const handleViewMoreClubs = () => {
     setClubsToShow(clubsToShow + 4);
   };
-  // const clubs = [
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     admin_name: "dummy",
-  //     title: "Royal Challengers banglore fan",
-  //     description: "Ee saal cup namde",
-  //     url: "https://media4.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif?cid=ecf05e47ifhe8vzxysiydhse6fnz0qa6u1v4l8knmp4jbfa7&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Dragon Slayers",
-  //     description: "slay the dragons",
-  //     url: "https://media2.giphy.com/media/p6CZO4BJ8pUHwk1AY9/200w.webp?cid=ecf05e472tkcgppvd20lkqzagnla5504x4n5uty8ahfpzcsv&ep=v1_gifs_related&rid=200w.webp&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Royal Challengers banglore fan",
-  //     description: "Ee saal cup namde",
-  //     url: "https://media4.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif?cid=ecf05e47ifhe8vzxysiydhse6fnz0qa6u1v4l8knmp4jbfa7&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Dragon Slayers",
-  //     description: "slay the dragons",
-  //     url: "https://media2.giphy.com/media/p6CZO4BJ8pUHwk1AY9/200w.webp?cid=ecf05e472tkcgppvd20lkqzagnla5504x4n5uty8ahfpzcsv&ep=v1_gifs_related&rid=200w.webp&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Royal Challengers banglore fan",
-  //     description: "Ee saal cup namde",
-  //     banner: {
-  //     url: "https://media4.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif?cid=ecf05e47ifhe8vzxysiydhse6fnz0qa6u1v4l8knmp4jbfa7&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-  //   },
-  // }
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Dragon Slayers",
-  //     description: "slay the dragons",
-  //     url: "https://media2.giphy.com/media/p6CZO4BJ8pUHwk1AY9/200w.webp?cid=ecf05e472tkcgppvd20lkqzagnla5504x4n5uty8ahfpzcsv&ep=v1_gifs_related&rid=200w.webp&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Royal Challengers banglore fan",
-  //     description: "Ee saal cup namde",
-  //     url: "https://media4.giphy.com/media/3oKIPtjElfqwMOTbH2/giphy.gif?cid=ecf05e47ifhe8vzxysiydhse6fnz0qa6u1v4l8knmp4jbfa7&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-  //   },
-  //   {
-  //     id: "fas43iewoiwasu94wfn84",
-  //     title: "Dragon Slayers",
-  //     description: "slay the dragons",
-  //     url: "https://media2.giphy.com/media/p6CZO4BJ8pUHwk1AY9/200w.webp?cid=ecf05e472tkcgppvd20lkqzagnla5504x4n5uty8ahfpzcsv&ep=v1_gifs_related&rid=200w.webp&ct=g",
-  //   },
-  // ];
+
 
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;

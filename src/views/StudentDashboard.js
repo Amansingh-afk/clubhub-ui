@@ -37,20 +37,24 @@ const StudentDashboard = () => {
   const events = [
     {
       id: "zmsiogj8trsje8tnvtvnt",
-      title: "Ghapa ghap",
-      imgUrl:
-        "https://media2.giphy.com/media/75wZWLEbYBx7i/200.webp?cid=ecf05e471s0fawaj0hfb0je765mrfyq68uycywkkaoo52ei7&ep=v1_gifs_search&rid=200.webp&ct=g",
+      club_name: "Royal challengers bangalore",
+      name: "fan secret meet",
+      description: "ee saal cup naam de !!",
+      scheduled_date: "31 dec 2023",
     },
     {
-      id: "zmsiogj8trsje8tnvtvnt",
-      title: "AdharShilla 2023",
-      imgUrl: "https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif",
+      id: "iuhjks87gj8trsje8tnvtv9889",
+      club_name: "Lucknow Super giants",
+      name: "Lucknow fan meet event",
+      description: "KL rahul bakchod hai",
+      scheduled_date: "31 dec 2023",
     },
     {
-      id: "zmsiogj8trsje8tnvtvnt",
-      title: "Sports day 2023",
-      imgUrl:
-        "https://media0.giphy.com/media/xT4uQmNR79FCKyDlPG/giphy.gif?cid=ecf05e47r7jlutxhl9qhw4ogs3vtsdh2nxpz6k9kr300n9di&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+      id: "okkoiogj8trsje8tnvtzvx4",
+      club_name: "Delhi capitals",
+      name: "Rishabh pant ke L lag gaye..",
+      description: "delhi se hai bhenchod..",
+      scheduled_date: "31 dec 2023",
     },
   ];
   if (!isAuthenticated) {
@@ -61,27 +65,21 @@ const StudentDashboard = () => {
     return (
       <Layout>
         <div className="container my-4">
-          <div className="row mb-4">
-            <div className="col-12">
-              <div className="card shadow bg-dark text-white">
-                <img
-                  src="https://i.pinimg.com/564x/9c/e9/4f/9ce94f34f809a2c2b64a7267ca6c240d.jpg"
-                  className="card-img"
-                  alt="..."
-                  height={250}
-                />
-                <div className="card-img-overlay">
-                  <h5 className="card-title">Hey, {user.name}</h5>
+        <div className="row">
+            <div className="col-md-6">
+              <div className="card mb-3 shadow border-0 bg-dark">
+                <div className="card-body text-light">
+                  <h5 className="card-title">Welcome, {user.name}!</h5>
                   <p className="card-text">
-                    Thanks for logging in. We hope you enjoy the upcoming events.
+                    Thanks for logging in. We hope you enjoy the upcoming event.
                   </p>
-                  <p className="card-text">New Clubs and Events are here !!</p>
                 </div>
               </div>
+              <EventCard event={events[0]} />
             </div>
-          </div>
-          <div className="row">
-            <Carousel />
+            <div className="col-md-6">
+              <Carousel />
+            </div>
           </div>
         </div>
         <div className="row mb-4 px-2">

@@ -2,20 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
-  const link = `/event/sadfklfjlkwoie943`;
+  const link = `/event/${event.id}`;
   return (
     <div className="card shadow m-2">
-      <div className="card-header bg-dark text-white">Featured</div>
+      <div className="card-header bg-dark text-white">{event.club_name}</div>
       <div className="card-body">
-        <h5 className="card-title">Special title treatment</h5>
-        <p className="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
-        <a href="#" className="btn btn-dark shadow-sm">
-          Go somewhere
-        </a>
+        <span className="d-flex justify-content-between">
+          <h5 className="card-title">{event.name}</h5>
+          <p className="text-muted">
+            <small>
+              scheduled date:{" "}
+              <span className="text-dark">{event.scheduled_date}</span>
+            </small>
+          </p>
+        </span>
+        <p className="card-text">{event.description}</p>
+        <Link to={link} className="btn btn-dark shadow-sm">
+          Check this event
+        </Link>
       </div>
-    </div> 
+    </div>
   );
 };
 

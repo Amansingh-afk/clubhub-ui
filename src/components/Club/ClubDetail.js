@@ -50,7 +50,7 @@ const ClubDetail = () => {
               className="img-fluid shadow mb-3 rounded"
             />
             <button className="btn btn-dark shadow mx-1" onClick={becomeMember}>
-              <i className="bx bx-plus"></i> Become a member
+              <i className="bx bx-plus"></i> Join this Club
             </button>
             {user?._id === clubData?.club.admin_id && (
               <Link
