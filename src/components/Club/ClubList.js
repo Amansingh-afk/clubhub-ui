@@ -40,7 +40,7 @@ const ClubList = ({ isAdmin, isStudent }) => {
               <h2 className="px-2 py-1 bg-dark text-light rounded shadow">
                 Your club
               </h2>
-              <div className="row my-5">
+              <div className="row mt-2 mb-3">
                 <div className="col-lg-6 my-2">
                   {adminClub.banner ? (
                     <ClubCard club={adminClub} />
@@ -53,7 +53,7 @@ const ClubList = ({ isAdmin, isStudent }) => {
           )}
 
           <h2 className="px-2 py-1 bg-dark text-light rounded shadow">Clubs</h2>
-          <div className="row my-4">
+          <div className="row mt-2 mb-4">
             {clubs.map((item) => (
               <div className="col-lg-6 my-2" key={item.id}>
                 <ClubCard club={item} />

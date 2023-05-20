@@ -5,26 +5,28 @@ import useAuth from "../utils/UseAuth";
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
 import EventCard from "../components/Event/EventCard";
-import Layout from "../components/Layout/Layout";
 import { useEffect, useState } from "react";
-import { getAllClubs } from "../utils/api";
+import { getAllClubs, getAllEvents } from "../utils/api";
 import Carousel from "../components/Common/Carousel";
 
 const StudentDashboard = () => {
   const { isAuthenticated, user, isLoading } = useAuth();
   const [clubs, setClubs] = useState([]);
+  const [events, setEvents] = useState([])
   const [clubsToShow, setClubsToShow] = useState(4);
 
   useEffect(() => {
-    const fetchAllClubs = async () => {
+    const fetch = async () => {
       try {
         const { clubs } = await getAllClubs();
         setClubs(clubs);
+        const {events} = await getAllEvents();
+        setEvents(events);
       } catch (err) {
         console.log(err);
       }
     };
-    fetchAllClubs();
+    fetch();
   }, []);
 
   if (isLoading) {
@@ -34,37 +36,15 @@ const StudentDashboard = () => {
   const handleViewMoreClubs = () => {
     setClubsToShow(clubsToShow + 4);
   };
-  const events = [
-    {
-      id: "zmsiogj8trsje8tnvtvnt",
-      club_name: "Royal challengers bangalore",
-      name: "fan secret meet",
-      description: "ee saal cup naam de !!",
-      scheduled_date: "31 dec 2023",
-    },
-    {
-      id: "iuhjks87gj8trsje8tnvtv9889",
-      club_name: "Lucknow Super giants",
-      name: "Lucknow fan meet event",
-      description: "KL rahul bakchod hai",
-      scheduled_date: "31 dec 2023",
-    },
-    {
-      id: "okkoiogj8trsje8tnvtzvx4",
-      club_name: "Delhi capitals",
-      name: "Rishabh pant ke L lag gaye..",
-      description: "delhi se hai bhenchod..",
-      scheduled_date: "31 dec 2023",
-    },
-  ];
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   } else if (user.role !== "student") {
     return <UnAuthorized />;
   } else {
     return (
-      <Layout>
-        <div className="container my-4">
+      <>
+        <div className="container my-2">
         <div className="row">
             <div className="col-md-6">
               <div className="card mb-3 shadow border-0 bg-dark">
@@ -75,7 +55,7 @@ const StudentDashboard = () => {
                   </p>
                 </div>
               </div>
-              <EventCard event={events[0]} />
+              {/* <EventCard event={events[0]} /> */}
             </div>
             <div className="col-md-6">
               <Carousel />
@@ -93,7 +73,7 @@ const StudentDashboard = () => {
             </button>
           </div>
           {clubs.slice(0, clubsToShow).map((item) => (
-            <div className="col-lg-6 py-2">
+            <div className="col-lg-6 py-2" key={item._id}>
               <ClubCard club={item} />
             </div>
           ))}
@@ -104,12 +84,12 @@ const StudentDashboard = () => {
             <h6>view more</h6>
           </div>
           {events.map((item) => (
-            <div className="col-lg-6">
+            <div className="col-lg-6" key={item._id}>
               <EventCard event={item} />
             </div>
           ))}
         </div>
-      </Layout>
+      </>
     );
   }
 };

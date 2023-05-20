@@ -4,7 +4,6 @@ import { Link, Navigate } from "react-router-dom";
 import useAuth from "../utils/UseAuth";
 import { getAllClubs } from "../utils/api";
 
-import Layout from "../components/Layout/Layout";
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
 
@@ -33,17 +32,16 @@ const SuperAdminDashboard = () => {
     setClubsToShow(clubsToShow + 4);
   };
 
-
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   } else if (user.role !== "super_admin") {
     return <UnAuthorized />;
   } else {
     return (
-      <Layout>
-        <div className="container my-3">
+      <>
+        <div className="container my-2">
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-6 p-0">
               <div className="card mb-3 shadow border-0 bg-dark">
                 <div className="card-body text-light">
                   <h5 className="card-title">Welcome, {user.name}!</h5>
@@ -60,7 +58,7 @@ const SuperAdminDashboard = () => {
               >
                 <Link
                   to={"/club/new"}
-                  className="btn btn-primary btn-rounded shadow"
+                  className="btn btn-primary btn-rounded shadow me-1"
                 >
                   <i className="bx bx-plus"></i>
                   Create Club
@@ -92,7 +90,7 @@ const SuperAdminDashboard = () => {
             </div>
           ))}
         </div>
-      </Layout>
+      </>
     );
   }
 };

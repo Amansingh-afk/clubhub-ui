@@ -18,6 +18,7 @@
   --search-area-bg: #fff;
   --star: #1ff1c2e;
   --message-btn: #fff;
+  --duration: .7s; 
 }
 
 
@@ -33,6 +34,8 @@
 body {
   overflow-x: hidden;
   background-color: var(--app-container);
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color var(--duration);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 import { getClubData, subscribeMembership } from "../../utils/api";
 
-import Layout from "../Layout/Layout";
 import useAuth from "../../utils/UseAuth";
 import ClubMembers from "./ClubMembers";
 import Spinner from "../Common/Spinner";
@@ -18,9 +17,8 @@ const ClubDetail = () => {
       try {
         const res = await getClubData(id);
         setClubData(res);
-        console.log(res)
       } catch (err) {
-        toast.error(err);
+        toast.error(err.response.data.error);
       }
     };
 
@@ -40,57 +38,55 @@ const ClubDetail = () => {
     }
   };
   return (
-    <Layout>
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-6">
-            <img
-              src={clubData?.club.banner.url}
-              alt=""
-              className="img-fluid shadow mb-3 rounded"
-            />
-            <button className="btn btn-dark shadow mx-1" onClick={becomeMember}>
-              <i className="bx bx-plus"></i> Join this Club
-            </button>
-            {user?._id === clubData?.club.admin_id && (
-              <Link
-                to={`/club/update/${id}`}
-                className="btn btn-primary shadow mx-1"
-              >
-                <i className="bx bx-edit-alt"></i> Edit club details
-              </Link>
-            )}
-          </div>
-          <div className="col-sm-6">
-            <div>
-              <div className="float-end"></div>
-              <strong className="text-dark fs-1 text-decoration-underline">
-                {clubData.club.name}
-              </strong>
-              <br />
-              <small>created_on: </small>
-              <br />
-              <span>
-                <small>Club Admin's name : </small>
-                <span className="fs-5">{clubData?.club.admin.name}</span>
-              </span>{" "}
-              <br />
-              <span>
-                <small>Club Admin's username : </small>
-                <span className="fs-5">{clubData?.club.admin.username}</span>
-              </span>
-            </div>
-            <hr />
-            <p>{clubData?.club.description}</p>
-
-            <hr />
-          </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-sm-6">
+          <img
+            src={clubData?.club.banner.url}
+            alt=""
+            className="img-fluid shadow mb-3 rounded"
+          />
+          <button className="btn btn-dark shadow m-1" onClick={becomeMember}>
+            <i className="bx bx-plus"></i> Join this Club
+          </button>
+          {user?._id === clubData?.club.admin_id && (
+            <Link
+              to={`/club/update/${id}`}
+              className="btn btn-primary shadow m-1"
+            >
+              <i className="bx bx-edit-alt"></i> Edit club details
+            </Link>
+          )}
         </div>
-        <div className="my-5">
-          <ClubMembers />
+        <div className="col-sm-6 my-2">
+          <div>
+            <div className="float-end"></div>
+            <strong className="text-dark fs-1 text-decoration-underline">
+              {clubData.club.name}
+            </strong>
+            <br />
+            <small>created_on: </small>
+            <br />
+            <span>
+              <small>Club Admin's name : </small>
+              <span className="fs-5">{clubData?.club.admin.name}</span>
+            </span>{" "}
+            <br />
+            <span>
+              <small>Club Admin's username : </small>
+              <span className="fs-5">{clubData?.club.admin.username}</span>
+            </span>
+          </div>
+          <hr />
+          <p>{clubData?.club.description}</p>
+
+          <hr />
         </div>
       </div>
-    </Layout>
+      <div className="my-5">
+        <ClubMembers />
+      </div>
+    </div>
   );
 };
 

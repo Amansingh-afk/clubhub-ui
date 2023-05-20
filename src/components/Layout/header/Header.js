@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import useAuth from "../../../utils/UseAuth";
-function Header() {
+
+const Header = ({ isAdmin, isStudent }) => {
   const navigate = useNavigate();
-  const { user, isLoading } = useAuth();
+  const { isLoading } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const toggleDropdown = () => {
+
+  const toggleUserDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
@@ -20,65 +22,129 @@ function Header() {
     navigate("/login", { replace: true });
   };
 
+  const isMobileScreen = () => {
+    return window.innerWidth < 992; // Adjust the breakpoint as needed
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-transparent rounded m-2">
-      <ul className="navbar-nav mx-auto">
-        <li className="nav-item">
-          <form className="form-inline">
-            <div className="search-wrapper">
-              <input
-                className="search-input"
-                type="text"
-                placeholder="Search"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-search"
+    <nav className={`navbar rounded-bottom navbar-expand-lg ${isMobileScreen() ? "bg-dark" : ""}`}>
+      <div className="container-fluid">
+        <button
+          className="navbar-toggler btn-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="search-wrapper my-4 mt-md-0">
+            <input className="search-input" type="text" placeholder="Search" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-search"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="M21 21l-4.35-4.35"></path>
+            </svg>
+          </div>
+          <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none">
+            {" "}
+            <li className="nav-item">
+              <a
+                className="nav-link text-white"
+                href={
+                  isAdmin ? "/admin" : isStudent ? "/student" : "/super-admin"
+                }
               >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="M21 21l-4.35-4.35"></path>
-              </svg>
-            </div>
-          </form>
-        </li>
-      </ul>
-      <ul className="navbar-nav left-nav">
-        <li className="nav-item">
-          <a className="nav-link header-profile text-center" href="#">
-            <i className="bx bx-bell bx-fw "></i>
-          </a>
-        </li>
-        <li className="dropdown">
-          <button
-            className="btn btn-transparent dropdown-toggle header-profile"
-            type="button"
-            onClick={toggleDropdown}
-          >
-            <i className="bx bx-user bx-fw"></i> {user.name}
-          </button>
-          {isDropdownOpen && (
-            <div className="dropdown-menu text-dark p-0 show">
-              <a className="dropdown-item px-2" type="button">
-                Profile
+                <i className="bx bx-home-alt-2"></i>
+                <span className="ms-2 ">Home</span>
               </a>
-              <a className="dropdown-item px-2" type="button">
-                Settings
+            </li>
+            <li className="nav-item ">
+              <a className="nav-link text-white" href="/club">
+                <i className="bx bx-group"></i>
+                <span className="ms-2">Clubs</span>
               </a>
-              <a className="dropdown-item px-2" type="button" onClick={logout}>
-                Logout
+            </li>
+            <li className="nav-item ">
+              <a className="nav-link text-white" href="/event">
+                <i className="bx bx-calendar-event"></i>
+                <span className="ms-2">Events</span>
               </a>
-            </div>
-          )}
-        </li>
-      </ul>
+            </li>
+            <li className="nav-item ">
+              <a className="nav-link text-white" href="/profile">
+                <i className="bx bx-user"></i>
+                <span className="ms-2">Profile</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="d-flex align-items-center">
+          <div>
+            <a className="text-reset me-3 dropdown-toggle">
+              <span className="badge rounded-pill badge-notification bg-danger">
+                1
+              </span>
+            </a>
+          </div>
+          <div className="dropdown">
+            <a
+              className="dropdown-toggle d-flex align-items-center hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded={isDropdownOpen}
+              onClick={toggleUserDropdown}
+            >
+              <img
+                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                className="rounded-circle"
+                height="25"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"
+              />
+            </a>
+            <ul
+              className={`dropdown-menu dropdown-menu-end ${
+                isDropdownOpen ? "show" : ""
+              }`}
+              aria-labelledby="navbarDropdownMenuAvatar"
+            >
+              <li>
+                <a className="dropdown-item" href="#">
+                  My profile
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#">
+                  Settings
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#" onClick={logout}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
   );
-}
+};
 
 export default Header;

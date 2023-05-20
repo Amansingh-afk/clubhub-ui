@@ -45,3 +45,17 @@ export const updateClubDetails = async (clubId, clubData) => {
 export const subscribeMembership = async (memberInfo) => {
   await api.post("/subscribe", memberInfo);
 };
+
+export const createEvent = async (eventData) => {
+  await api.post("/create-event", eventData);
+};
+
+export const getAllEvents = async () => {
+  const { data } = await api.get("/events");
+  return data;
+};
+
+export const getEventData = async (eventId) => {
+  const { data } = await api.get(`/club/event/${eventId}`);
+  return data;
+};

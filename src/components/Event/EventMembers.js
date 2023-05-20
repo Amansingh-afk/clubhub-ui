@@ -40,36 +40,38 @@ const EventMembers = () => {
   ];
 
   return (
-    <table className="table table-striped table-hover shadow">
-      <thead className="table-dark">
-        <tr>
-          <th>Profile Photo</th>
-          <th>Name</th>
-          <th>Course</th>
-          <th>Semester</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row) => (
-          <tr key={row.id} className="shadow-sm ">
-            <td>
-              <div>
-                <img
-                  src={row.profilePhoto}
-                  alt="Profile"
-                  width={45}
-                  height={45}
-                  className="rounded-circle shadow"
-                />
-              </div>
-            </td>
-            <td>{row.name}</td>
-            <td>{row.course}</td>
-            <td>{row.semester}</td>
+    <div className="table-responsive">
+      <table className="table table-striped table-hover shadow">
+        <thead className="table-dark">
+          <tr>
+            <th>Profile Photo</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Semester</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id} className="shadow-sm ">
+              <td>
+                <div>
+                  <img
+                    src={row.profilePhoto}
+                    alt="Profile"
+                    width={45}
+                    height={45}
+                    className="rounded-circle shadow"
+                  />
+                </div>
+              </td>
+              <td>{row.name}</td>
+              <td>{row.course}</td>
+              <td>{row.semester}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

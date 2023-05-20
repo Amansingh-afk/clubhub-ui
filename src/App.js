@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Outlet,
 } from "react-router-dom";
 
 import "./App.css";
@@ -21,6 +22,8 @@ import ClubDetail from "./components/Club/ClubDetail";
 import ClubForm from "./components/Club/ClubForm";
 import EventDetail from "./components/Event/EventDetail";
 import Event from "./components/Event/Event";
+import EventForm from "./components/Event/EventForm";
+import Layout from "./components/Layout/Layout";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth();
@@ -44,20 +47,23 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/super-admin" element={<SuperAdminDashboard />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/student" element={<StudentDashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/reset-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/change-password" element={<Settings />} />
-        <Route path="/event" element={<Event />} />
-        <Route path="/event/:id" element={<EventDetail />} />
-        <Route path="/club" element={<Club />} />
-        <Route path="/club/:id" element={<ClubDetail />} />
-        <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />
-        <Route path="/club/new" element={<ClubForm isEdit={false} />} />
+        <Route path="/" element={ <Layout> <Outlet /> </Layout> } >
+          <Route path="/super-admin" element={<SuperAdminDashboard />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/student" element={<StudentDashboard />} />
+          <Route path="/reset-password" element={<ForgotPassword />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/change-password" element={<Settings />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/event/:id" element={<EventDetail />} />
+          <Route path="/event/new" element={<EventForm />} />
+          <Route path="/club" element={<Club />} />
+          <Route path="/club/:id" element={<ClubDetail />} />
+          <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />
+          <Route path="/club/new" element={<ClubForm isEdit={false} />} />
+        </Route>
       </Routes>
     </Router>
   );

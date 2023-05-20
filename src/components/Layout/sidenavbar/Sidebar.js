@@ -14,18 +14,11 @@ const Sidebar = ({ isAdmin, isStudent, isMenuExpanded, onMenuToggle }) => {
     { title: "Clubs", icon: "bx bx-group", path: "/club" },
     { title: "Events", icon: "bx bx-calendar-event", path: "/event" },
     { title: "Profile", icon: "bx bx-user", path: "/profile" },
-    { title: "Setting", icon: "bx bx-cog", path: "#" },
   ].filter(
     (item) => isAdmin || isStudent || ["Home", "Clubs"].includes(item.title)
   );
 
-  useEffect(() => {
-    const savedActiveItem = localStorage.getItem("active-menu-btn");
-    setActiveItem(savedActiveItem);
-  }, []);
-
   const handleItemClick = (item) => {
-    localStorage.setItem("active-menu-btn", item.title);
     setActiveItem(item.title);
   };
 

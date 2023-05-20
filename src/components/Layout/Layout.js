@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import useAuth from "../../utils/UseAuth";
 import Header from "./header/Header";
 import Sidebar from "./sidenavbar/Sidebar";
 import Spinner from "../Common/Spinner";
-import Toast from "../../utils/Toast";
 
 const Layout = ({ children }) => {
   const { user, isLoading } = useAuth();
@@ -35,12 +34,11 @@ const Layout = ({ children }) => {
             onMenuToggle={handleMenuToggle}
           />
         </div>
-        <div className={isMenuExpanded ? "col-lg-10 col-md-9" : "col-lg-11"}>
-          <Header />
-          <main className="container-fluid my-4 py-2 shadow rounded bg-white">
+        <div className={isMenuExpanded ? "col-lg-10 col-md-9" : "col-lg-11 p-0"}>
+          <Header isAdmin={isAdmin} isStudent={isStudent} />
+          <main className="container-fluid my-2 py-2 shadow rounded bg-white">
             {children}
           </main>
-          <Toast />
         </div>
       </div>
     </div>
