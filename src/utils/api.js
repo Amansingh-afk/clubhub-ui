@@ -59,3 +59,11 @@ export const getEventData = async (eventId) => {
   const { data } = await api.get(`/club/event/${eventId}`);
   return data;
 };
+
+export const updateEventDetails = async (eventId, eventData) => {
+  await api.put(`/club/event/${eventId}`, eventData);
+};
+
+export const joinEvent = async (participantdata) => {
+  await api.post("/event/join", participantdata);
+};

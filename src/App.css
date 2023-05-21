@@ -36,4 +36,8 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
+
+  .preserve-formatting {
+    white-space: pre-line; /* or white-space: pre; */
+  }
   

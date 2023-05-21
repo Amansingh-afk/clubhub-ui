@@ -58,7 +58,8 @@ const App = () => {
           <Route path="/change-password" element={<Settings />} />
           <Route path="/event" element={<Event />} />
           <Route path="/event/:id" element={<EventDetail />} />
-          <Route path="/event/new" element={<EventForm />} />
+          <Route path="/event/new" element={<EventForm isEdit={false}/>} />
+          <Route path="/event/update/:id" element={<EventForm isEdit={true}/>} />
           <Route path="/club" element={<Club />} />
           <Route path="/club/:id" element={<ClubDetail />} />
           <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />
