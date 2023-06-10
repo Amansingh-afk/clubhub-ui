@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { createUser } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
+const courses = [
+  { name: "BCA", semesters: [1, 2, 3, 4, 5, 6] },
+  { name: "MBA", semesters: [1, 2, 3, 4] },
+];
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
@@ -122,38 +127,50 @@ const SignIn = () => {
                         </small>
                       )}
                     </div>
-                    <div className="d-flex mb-3">
-                      <div className="form-floating me-1">
-                        <input
-                          type="text"
-                          className="form-control shadow"
-                          id="course"
-                          name="course"
-                          placeholder="Enter you course"
-                          value={userData.course}
-                          onChange={handleUserData}
-                        />
-                        <label htmlFor="course" className="form-label-sm">
-                          Course
-                        </label>
-                      </div>
-                      <div className="form-floating">
-                        <input
-                          type="text"
-                          className="form-control shadow"
-                          id="semester"
-                          name="semester"
-                          placeholder="Enter your roll no"
-                          value={userData.semester}
-                          onChange={handleUserData}
-                        />
-                        <label htmlFor="semester" className="form-label-sm">
-                          Semester
-                        </label>
-                      </div>
+                    <div className="form-floating mb-3">
+                      <select
+                        id="course"
+                        name="course"
+                        className="form-select"
+                        value={userData.course}
+                        onChange={handleUserData}
+                        required
+                      >
+                        <option value="">--Select Course--</option>
+                        {courses.map((course) => (
+                          <option key={course.name} value={course.name}>
+                            {course.name}
+                          </option>
+                        ))}
+                      </select>
+                      <label htmlFor="course">Course:</label>
                     </div>
                     <div className="form-floating mb-3">
-                      <input
+                      <select
+                        id="semester"
+                        name="semester"
+                        className="form-select"
+                        value={userData.semester}
+                        onChange={handleUserData}
+                        required
+                      >
+                        <option value="">--Select Semester--</option>
+                        {userData.course ? (
+                          courses
+                            .find((c) => c.name === userData.course)
+                            .semesters.map((s) => (
+                              <option key={s} value={s}>
+                                {s}
+                              </option>
+                            ))
+                        ) : (
+                          <option value="--">--</option>
+                        )}
+                      </select>
+                      <label htmlFor="semester">Semester:</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                      <input data-toggle="tooltip" data-placement="top" title="Tooltip on top"
                         type="text"
                         className="form-control shadow"
                         id="roll_no"
@@ -161,8 +178,9 @@ const SignIn = () => {
                         placeholder="Enter roll no"
                         value={userData.roll_no}
                         onChange={handleUserData}
+                        required
                       />
-                      <label htmlFor="roll_no" className="form-label-sm">
+                      <label htmlFor="roll_no" className="form-label-sm" >
                         Roll No.
                       </label>
                     </div>

@@ -16,7 +16,6 @@ import Login from "./components/Auth/Login";
 import SignIn from "./components/Auth/SignIn";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import Profile from "./components/Profile/Profile";
-import Settings from "./components/Profile/settings";
 import Club from "./components/Club/Club";
 import ClubDetail from "./components/Club/ClubDetail";
 import ClubForm from "./components/Club/ClubForm";
@@ -24,6 +23,7 @@ import EventDetail from "./components/Event/EventDetail";
 import Event from "./components/Event/Event";
 import EventForm from "./components/Event/EventForm";
 import Layout from "./components/Layout/Layout";
+import Password from "./components/Profile/Password";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth();
@@ -55,7 +55,7 @@ const App = () => {
           <Route path="/student" element={<StudentDashboard />} />
           <Route path="/reset-password" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/change-password" element={<Settings />} />
+          <Route path="/change-password" element={<Password />} />
           <Route path="/event" element={<Event />} />
           <Route path="/event/:id" element={<EventDetail />} />
           <Route path="/event/new" element={<EventForm isEdit={false}/>} />

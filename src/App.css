@@ -1,3 +1,11 @@
+.club_card{
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.club_card:hover{
+  transform: scale(1.02);
+  /* box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5)  !important; */
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -24,8 +32,6 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    background: none;
-    border: none;
     font-size: 16px;
     cursor: pointer;
   }

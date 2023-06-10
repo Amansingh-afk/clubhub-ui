@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ isAdmin, isStudent, isMenuExpanded, onMenuToggle }) => {
-  const [activeItem, setActiveItem] = useState("");
+  const [activeItem, setActiveItem] = useState("Home");
 
   const MENU_ITEMS = [
     {

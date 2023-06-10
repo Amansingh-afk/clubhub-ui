@@ -9,7 +9,7 @@ const ClubCard = ({ club }) => {
   const link = `/club/${club._id}`;
 
   return (
-    <div class="card rounded shadow text-white">
+    <div class="card rounded shadow text-white club_card">
   <img src={club.banner.url} class="card-img" alt="..." height="220" />
   <div class="card-img-overlay">
     <h5 class="card-title text-decoration-underline">{club.name}</h5>

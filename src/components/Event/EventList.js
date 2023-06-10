@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
 import { getAllEvents } from "../../utils/api";
+import Spinner from "../Common/Spinner";
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
@@ -17,6 +18,10 @@ const EventList = () => {
 
     fetchEvents();
   }, []);
+
+  if(events.length == 0){
+    return <Spinner />
+  }
   return (
     <>
       <div className="d-flex mb-3 justify-content-between align-items-center bg-dark text-white rounded shadow p-0">

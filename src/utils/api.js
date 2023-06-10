@@ -18,6 +18,15 @@ export const createUser = async (userData) => {
   return data;
 };
 
+export const getUserDetails = async () => {
+  const { data } = await api.get("/me");
+  return data;
+};
+
+export const updateUserDetails = async (userDetails) => {
+  const { data } = await api.put("/me/update", userDetails);
+  return data;
+};
 export const getAllClubs = async () => {
   const { data } = await api.get("/clubs");
   return data;
@@ -46,6 +55,9 @@ export const subscribeMembership = async (memberInfo) => {
   await api.post("/subscribe", memberInfo);
 };
 
+export const unSubscribeMembership = async (clubId) => {
+  await api.delete(`/unsubscribe/${clubId}`);
+};
 export const createEvent = async (eventData) => {
   await api.post("/create-event", eventData);
 };
@@ -66,4 +78,16 @@ export const updateEventDetails = async (eventId, eventData) => {
 
 export const joinEvent = async (participantdata) => {
   await api.post("/event/join", participantdata);
+};
+
+export const leaveEvent = async (eventId) => {
+  await api.delete(`/event/leave/${eventId}`);
+};
+
+export const removeUserFromClub = async (userInfo) => {
+  await api.delete("/club/remove", {data: userInfo});
+};
+
+export const removeUserFromEvent = async (userInfo) => {
+  await api.delete("/event/remove", {data: userInfo});
 };

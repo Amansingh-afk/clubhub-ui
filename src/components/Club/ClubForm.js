@@ -163,6 +163,7 @@ const ClubForm = ({ isEdit }) => {
                   id="adminName"
                   value={adminName}
                   onChange={(e) => setAdminName(e.target.value)}
+                  readOnly={isEdit}
                   required
                 />
               </div>

@@ -19,8 +19,12 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(user));
 
       navigate(
-        user.role === "admin" ? "/admin" : user.role === "super_admin" ? "/super-admin" : "/student",
-        { replace: true, }
+        user.role === "admin"
+          ? "/admin"
+          : user.role === "super_admin"
+          ? "/super-admin"
+          : "/student",
+        { replace: true }
       );
     } catch (error) {
       console.error(error);
@@ -85,8 +89,7 @@ const Login = () => {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-primary btn-block shadow"
-                  style={{ width: "100%" }}
+                  className="btn btn-primary btn-block shadow w-100"
                   onClick={handleLogin}
                 >
                   Login
@@ -97,6 +100,10 @@ const Login = () => {
                 <Link to="/sign-in"> Create an Account</Link>
               </div>
             </div>
+          </div>
+          <div className="text-center mt-5">
+            <span>Are you a teacher? </span>
+            <Link>Create Account here.</Link>
           </div>
         </div>
       </div>

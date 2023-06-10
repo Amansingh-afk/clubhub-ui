@@ -12,15 +12,16 @@ import Carousel from "../components/Common/Carousel";
 const StudentDashboard = () => {
   const { isAuthenticated, user, isLoading } = useAuth();
   const [clubs, setClubs] = useState([]);
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
   const [clubsToShow, setClubsToShow] = useState(4);
+  const [eventsToShow, setEventsToShow] = useState(4);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         const { clubs } = await getAllClubs();
         setClubs(clubs);
-        const {events} = await getAllEvents();
+        const { events } = await getAllEvents();
         setEvents(events);
       } catch (err) {
         console.log(err);
@@ -37,6 +38,10 @@ const StudentDashboard = () => {
     setClubsToShow(clubsToShow + 4);
   };
 
+  const handleViewMoreEvents = () => {
+    setEventsToShow(eventsToShow + 4);
+  };
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   } else if (user.role !== "student") {
@@ -45,7 +50,7 @@ const StudentDashboard = () => {
     return (
       <>
         <div className="container my-2">
-        <div className="row">
+          <div className="row">
             <div className="col-md-6">
               <div className="card mb-3 shadow border-0 bg-dark">
                 <div className="card-body text-light">
@@ -81,9 +86,14 @@ const StudentDashboard = () => {
         <div className="row px-2">
           <div className="mb-3 shadow rounded d-flex bg-dark text-light justify-content-between align-items-center">
             <h2>Events</h2>
-            <h6>view more</h6>
+            <button
+              className="btn text-light btn-outline-dark"
+              onClick={handleViewMoreEvents}
+            >
+              view more
+            </button>
           </div>
-          {events.map((item) => (
+          {events.slice(0, eventsToShow).map((item) => (
             <div className="col-lg-6" key={item._id}>
               <EventCard event={item} />
             </div>

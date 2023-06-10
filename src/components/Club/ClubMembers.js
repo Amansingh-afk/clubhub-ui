@@ -1,46 +1,21 @@
 import React from "react";
+import { toast } from "react-toastify";
+import { removeUserFromClub } from "../../utils/api";
 
-const ClubMembers = () => {
-  const data = [
-    {
-      id: 1,
-      profilePhoto:
-        "https://i.pinimg.com/236x/ef/20/6b/ef206b18cce54867dc03a5a8a5d81d95.jpg",
-      name: "John Doe",
-      rollNo: "123456",
-      course: "Computer Science",
-      semester: "4th",
-    },
-    {
-      id: 2,
-      profilePhoto:
-        "https://i.pinimg.com/236x/3f/7a/90/3f7a909e37086a5eef64b07768fffc2d.jpg",
-      name: "Jane Smith",
-      rollNo: "654321",
-      course: "Electrical Engineering",
-      semester: "6th",
-    },
-    {
-      id: 3,
-      profilePhoto:
-        "https://i.pinimg.com/236x/b0/df/ce/b0dfced73ad3c5b553eae610baf7cd1d.jpg",
-      name: "Jane Smith",
-      rollNo: "654321",
-      course: "Electrical Engineering",
-      semester: "6th",
-    },
-    {
-      id: 4,
-      profilePhoto:
-        "https://i.pinimg.com/236x/8b/51/10/8b51103292cdddca122de6c67c185640.jpg",
-      name: "Jane Smith",
-      rollNo: "654321",
-      course: "Electrical Engineering",
-      semester: "6th",
-    },
-    // Add more data objects as needed
-  ];
+const ClubMembers = ({ clubId, isAdmin, members }) => {
 
+  const removeMember = async(userId) => {
+    const userInfo = {
+      userId: userId,
+      clubId: clubId,
+    };
+    try {
+      await removeUserFromClub(userInfo);
+      toast.warning("Member removed.");
+    } catch (err) {
+      toast.error(err.response.data.error);
+    }
+  }
   return (
     <div className="table-responsive">
       <table className="table table-striped table-hover shadow">
@@ -51,16 +26,16 @@ const ClubMembers = () => {
             <th>Roll No</th>
             <th>Course</th>
             <th>Semester</th>
-            <th>Action</th>
+            {isAdmin && <th>Action</th>}
           </tr>
         </thead>
         <tbody>
-          {data.map((row) => (
-            <tr key={row.id} className="shadow-sm">
+          {members.map((row) => (
+            <tr key={row._id} className="shadow-sm">
               <td>
                 <div>
                   <img
-                    src={row.profilePhoto}
+                    src={row.avatar.url}
                     alt="Profile"
                     width={45}
                     height={45}
@@ -69,14 +44,16 @@ const ClubMembers = () => {
                 </div>
               </td>
               <td>{row.name}</td>
-              <td>{row.rollNo}</td>
+              <td>{row.roll_no}</td>
               <td>{row.course}</td>
               <td>{row.semester}</td>
-              <td>
-                <button className="btn btn-danger">
-                  <i className="bx bx-trash"></i>
-                </button>
-              </td>
+              {isAdmin && (
+                <td>
+                  <button className="btn btn-danger" onClick={()=> removeMember(row._id)}>
+                    <i className="bx bx-trash"></i>
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

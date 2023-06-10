@@ -5,7 +5,7 @@ import useAuth from "../../../utils/UseAuth";
 
 const Header = ({ isAdmin, isStudent }) => {
   const navigate = useNavigate();
-  const { isLoading } = useAuth();
+  const { isLoading, user } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   if (isLoading) {
@@ -111,10 +111,10 @@ const Header = ({ isAdmin, isStudent }) => {
               onClick={toggleUserDropdown}
             >
               <img
-                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                src={user.avatar.url}
                 className="rounded-circle"
                 height="25"
-                alt="Black and White Portrait of a Man"
+                alt="set alt image"
                 loading="lazy"
               />
             </a>
