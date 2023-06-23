@@ -80,7 +80,7 @@ const Login = () => {
                     Remember me
                   </label>
                   <Link
-                    to="/reset-password"
+                    to="/forgot-password"
                     className="float-end"
                     style={{ fontSize: "small" }}
                   >
@@ -100,10 +100,6 @@ const Login = () => {
                 <Link to="/sign-in"> Create an Account</Link>
               </div>
             </div>
-          </div>
-          <div className="text-center mt-5">
-            <span>Are you a teacher? </span>
-            <Link>Create Account here.</Link>
           </div>
         </div>
       </div>

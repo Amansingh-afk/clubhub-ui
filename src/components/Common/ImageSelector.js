@@ -54,6 +54,7 @@ const ImageSelector = ({ isOpen, onClose, onSelect }) => {
       setSelectedImage(image.url);
       onSelect(image);
     }
+    onClose();
   };
 
   return (

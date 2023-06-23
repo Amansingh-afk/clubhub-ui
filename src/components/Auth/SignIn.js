@@ -46,7 +46,7 @@ const SignIn = () => {
 
     if (name === "fullname") {
       if (!/^[a-zA-Z\s]{4,}$/.test(value)) {
-        error = "Full name must contain at least 2 alphabetical characters";
+        error = "Full name must contain at least 4 alphabetical characters";
       }
     } else if (name === "email") {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -97,7 +97,7 @@ const SignIn = () => {
             <div className="card-body">
               <h3 className="text-center mb-4">Sign In</h3>
 
-              <div className="step">{currentStep}</div>
+              <div className="text-center mb-3 text-bold">Step {currentStep}</div>
 
               <form onSubmit={handleSubmit} noValidate validated={validated}>
                 {currentStep === 1 && (

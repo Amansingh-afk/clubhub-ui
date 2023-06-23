@@ -28,6 +28,7 @@ const EventMembers = ({ eventId, isAdmin, participants }) => {
           </tr>
         </thead>
         <tbody>
+          {!participants.length && <span className="p-4">No participants yet.</span>}
           {participants.map((row) => (
             <tr key={row._id} className="shadow-sm ">
               <td>

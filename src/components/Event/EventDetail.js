@@ -79,12 +79,7 @@ const EventDetail = () => {
             </div>
             <div className="card-body">
               <div className="d-flex justify-content-between">
-                <h3 className="card-subtitle mb-2">
-                  <small className="fs-5 text-decoration-underline text-muted">
-                    Event title:
-                  </small>{" "}
-                  {event.name}
-                </h3>
+                <h3 className="card-subtitle mb-2">{event.name}</h3>
                 <p className="text-muted">
                   <small>
                     scheduled date:{" "}
@@ -93,10 +88,6 @@ const EventDetail = () => {
                 </p>{" "}
               </div>
               <p className="card-text preserve-formatting">
-                <span className="text-decoration-underline text-muted">
-                  Description
-                </span>
-                {": "}
                 {event.description}
               </p>
             </div>
@@ -120,7 +111,7 @@ const EventDetail = () => {
             ) : (
               <button
                 onClick={handleParticipation}
-                className="my-2 mx-2 btn btn-dark shadow rounded"
+                className="my-2 mx-2 btn btn-success shadow rounded"
               >
                 Participate
               </button>
