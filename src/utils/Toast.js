@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 const Toast = () => {
   return (
     <div>
-      {/* Your other components */}
       <ToastContainer
         position="top-center"
         autoClose={2500}

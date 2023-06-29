@@ -8,7 +8,7 @@ const EventCard = ({ event }) => {
       <div className="card-header bg-dark text-white">{event.club_name}</div>
       <div className="card-body">
         <span className="d-flex justify-content-between">
-          <h5 className="card-title">{event.name}</h5>
+          <h5 className="card-title w-50">{event.name}</h5>
           <p className="text-muted border-start ps-3">
             <small>
               scheduled date:{" "}

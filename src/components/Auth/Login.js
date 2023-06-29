@@ -7,6 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errormsg, setErrorMsg] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,8 +28,8 @@ const Login = () => {
         { replace: true }
       );
     } catch (error) {
+      setErrorMsg(error.response.data.message);
       console.error(error);
-      alert("Invalid credentials");
     }
   };
 
@@ -40,14 +41,18 @@ const Login = () => {
             <div className="card-body">
               <h3 className="text-center mb-4">Login</h3>
               <form>
+                <p className="text-danger fs-6">{errormsg}</p>
                 <div className="form-floating mb-3">
                   <input
                     type="text"
-                    className="form-control shadow"
+                    className={`form-control shadow ${
+                      errormsg.length ? "is-invalid" : ""
+                    }`}
                     id="username"
                     placeholder="Enter username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
                   />
                   <label htmlFor="username" className="form-label-sm">
                     Username
@@ -56,10 +61,13 @@ const Login = () => {
                 <div className="form-floating mb-3">
                   <input
                     type="password"
-                    className="form-control shadow"
+                    className={`form-control shadow ${
+                      errormsg.length ? "is-invalid" : ""
+                    }`}
                     id="password"
                     placeholder="Enter password"
                     value={password}
+                    required
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <label htmlFor="password" className="form-label-sm">

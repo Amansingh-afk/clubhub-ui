@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { getAllEvents } from "../../utils/api";
 import Spinner from "../Common/Spinner";
-import useAuth from "../../utils/UseAuth";
 
 const EventList = () => {
-  const { user } = useAuth();
   const [events, setEvents] = useState([]);
   useEffect(() => {
     const fetchEvents = async () => {
@@ -22,17 +19,17 @@ const EventList = () => {
   }, []);
 
   if (events.length === 0) {
-    return <Spinner />;
+    return (
+      <>
+         <p>There are No events yet..</p>
+        <Spinner />
+      </>
+    );
   }
   return (
     <>
       <div className="d-flex mb-3 justify-content-between align-items-center bg-dark text-white rounded shadow p-0">
         <h4 className="px-3 py-1">Your events</h4>
-        {user.role === "admin" && 
-        <Link to="/event/new" className="btn py-2 btn-primary shadow rounded">
-          Create Event
-        </Link>
-        }
       </div>
       <div className="row">
         {events.map((item, index) => (

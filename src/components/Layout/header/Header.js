@@ -24,10 +24,14 @@ const Header = ({ isAdmin, isStudent }) => {
 
   const isMobileScreen = () => {
     return window.innerWidth < 992; // Adjust the breakpoint as needed
-  }
+  };
 
   return (
-    <nav className={`navbar rounded-bottom navbar-expand-lg ${isMobileScreen() ? "bg-dark" : ""}`}>
+    <nav
+      className={`navbar rounded-bottom navbar-expand-lg ${
+        isMobileScreen() ? "bg-dark" : ""
+      }`}
+    >
       <div className="container-fluid">
         <button
           className="navbar-toggler btn-light"
@@ -111,10 +115,13 @@ const Header = ({ isAdmin, isStudent }) => {
               onClick={toggleUserDropdown}
             >
               <img
-                src={user.avatar.url}
+                src={user.avatar.url || "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png"}
+                onError={(e) => {
+                  e.target.src = "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png";
+                }}
                 className="rounded-circle"
-                height="25"
-                alt="set alt image"
+                height="40"
+                alt="profile logo"
                 loading="lazy"
               />
             </a>

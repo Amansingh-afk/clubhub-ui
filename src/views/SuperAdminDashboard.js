@@ -84,6 +84,7 @@ const SuperAdminDashboard = () => {
               view more
             </button>
           </div>
+          {!clubs.length && <div>No clubs to show..</div>}
           {clubs.slice(0, clubsToShow).map((item) => (
             <div className="col-lg-6 my-3">
               <ClubCard club={item} />

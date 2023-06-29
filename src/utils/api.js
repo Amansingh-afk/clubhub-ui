@@ -27,6 +27,11 @@ export const updateUserDetails = async (userDetails) => {
   const { data } = await api.put("/me/update", userDetails);
   return data;
 };
+
+export const forgotPassword = async (userEmail) => {
+  await api.post("/password/forgot", userEmail);
+};
+
 export const getAllClubs = async () => {
   const { data } = await api.get("/clubs");
   return data;
@@ -85,9 +90,13 @@ export const leaveEvent = async (eventId) => {
 };
 
 export const removeUserFromClub = async (userInfo) => {
-  await api.delete("/club/remove", {data: userInfo});
+  await api.delete("/club/remove", { data: userInfo });
 };
 
 export const removeUserFromEvent = async (userInfo) => {
-  await api.delete("/event/remove", {data: userInfo});
+  await api.delete("/event/remove", { data: userInfo });
 };
+
+export const createTeam = async(team) => {
+  await api.post("/event/create/team", team);
+}

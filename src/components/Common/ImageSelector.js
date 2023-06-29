@@ -1,24 +1,5 @@
 import React, { useState } from "react";
-
-const Modal = ({ isOpen, onClose, children }) => {
-  if (!isOpen) {
-    return null;
-  }
-
-  return (
-    <div className="modal">
-      <div className="modal-content">
-        <button
-          type="button"
-          class="modal-close btn-close me-4"
-          aria-label="Close"
-          onClick={onClose}
-        ></button>
-        {children}
-      </div>
-    </div>
-  );
-};
+import Modal from "./Modal";
 
 const ImageSelector = ({ isOpen, onClose, onSelect }) => {
   const clubBanners = [
@@ -49,7 +30,7 @@ const ImageSelector = ({ isOpen, onClose, onSelect }) => {
   const handleImageClick = (image) => {
     if (selectedImage === image.url) {
       setSelectedImage(null);
-      onSelect(null); 
+      onSelect(null);
     } else {
       setSelectedImage(image.url);
       onSelect(image);

@@ -77,6 +77,7 @@ const StudentDashboard = () => {
               view more
             </button>
           </div>
+          {!clubs.length && <div>No clubs to show..</div>}
           {clubs.slice(0, clubsToShow).map((item) => (
             <div className="col-lg-6 py-2" key={item._id}>
               <ClubCard club={item} />
@@ -93,6 +94,7 @@ const StudentDashboard = () => {
               view more
             </button>
           </div>
+          {!events.length && <div>No events to show..</div>}
           {events.slice(0, eventsToShow).map((item) => (
             <div className="col-lg-6" key={item._id}>
               <EventCard event={item} />

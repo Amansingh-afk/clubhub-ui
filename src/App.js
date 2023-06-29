@@ -24,6 +24,8 @@ import Event from "./components/Event/Event";
 import EventForm from "./components/Event/EventForm";
 import Layout from "./components/Layout/Layout";
 import Password from "./components/Profile/Password";
+import ResetPassword from "./components/Auth/ResetPassword";
+import TeamForm from "./components/Event/TeamForm";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth();
@@ -50,6 +52,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/" element={ <Layout> <Outlet /> </Layout> } >
           <Route path="/super-admin" element={<SuperAdminDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
@@ -61,6 +64,7 @@ const App = () => {
           <Route path="/event/:id" element={<EventDetail />} />
           <Route path="/event/new" element={<EventForm isEdit={false}/>} />
           <Route path="/event/update/:id" element={<EventForm isEdit={true}/>} />
+          <Route path="/event/team" element={<TeamForm />} />
           <Route path="/club" element={<Club />} />
           <Route path="/club/:id" element={<ClubDetail />} />
           <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />

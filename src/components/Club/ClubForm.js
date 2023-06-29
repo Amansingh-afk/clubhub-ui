@@ -30,6 +30,10 @@ const ClubForm = ({ isEdit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(bannerImage === null){
+      toast.warning("Choose club banner lodu !!");
+      return;
+    }
     const newClub = {
       name: clubName,
       adminUsername: adminName,

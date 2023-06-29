@@ -84,12 +84,20 @@ const ClubDetail = () => {
               </button>
             ))}
           {user?._id === club.admin_id && (
-            <Link
-              to={`/club/update/${id}`}
-              className="btn btn-primary shadow m-1"
-            >
-              <i className="bx bx-edit-alt"></i> Edit club details
-            </Link>
+            <div>
+              <Link
+                to={`/club/update/${id}`}
+                className="btn btn-primary shadow m-1"
+              >
+                <i className="bx bx-edit-alt"></i> Edit club details
+              </Link>
+              <Link
+                to="/event/new"
+                className="btn btn-primary shadow"
+              >
+                Create Event
+              </Link>
+            </div>
           )}
         </div>
         <div className="col-sm-6 my-2">
@@ -98,8 +106,6 @@ const ClubDetail = () => {
             <strong className="text-dark fs-1 text-decoration-underline">
               {club.name}
             </strong>
-            <br />
-            <small>created_on: </small>
             <br />
             <span>
               <small>Club Admin's name : </small>

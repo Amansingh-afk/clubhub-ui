@@ -7,6 +7,7 @@ import { getEventData, joinEvent, leaveEvent } from "../../utils/api";
 import EventMembers from "./EventMembers";
 import Spinner from "../Common/Spinner";
 import useAuth from "../../utils/UseAuth";
+import TeamForm from "./TeamForm";
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -16,16 +17,20 @@ const EventDetail = () => {
   const [isAdmin, setIsAdmin] = useState(null);
   const [hasParticipated, setHasParticipated] = useState(false);
   const [participants, setParticipants] = useState(null);
+  const [team, setTeam] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const { isAdmin, hasParticipated, event, participants } =
+        const { isAdmin, hasParticipated, event, participants, team } =
           await getEventData(id);
         setEvent(event);
         setHasParticipated(hasParticipated);
         setParticipants(participants);
+        setTeam(team);
         setIsAdmin(isAdmin);
+        console.log(team);
       } catch (err) {
         toast.error(err.response.data.error);
       }
@@ -66,10 +71,23 @@ const EventDetail = () => {
     }
   };
 
+  const removeTeam = async () => {
+    toast.warning("This feature is in progress, SORRY!!");
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
+      <TeamForm isOpen={isModalOpen} onClose={handleCloseModal} eventId={id} />
       {event && (
-        <div className="container py-3">
+        <div className="container py-md-3 px-0">
           <div className="card border-0">
             <div className="card-header border bg-dark text-white rounded">
               <h5 className="card-title">
@@ -79,8 +97,8 @@ const EventDetail = () => {
             </div>
             <div className="card-body">
               <div className="d-flex justify-content-between">
-                <h3 className="card-subtitle mb-2">{event.name}</h3>
-                <p className="text-muted">
+                <h3 className="card-subtitle mb-2 text-nowrap">{event.name}</h3>
+                <p className="text-muted ms-3">
                   <small>
                     scheduled date:{" "}
                     <span className="text-dark">{event.scheduled_date}</span>
@@ -108,6 +126,19 @@ const EventDetail = () => {
               >
                 Leave Event
               </button>
+            ) : event.event_type === "team" ? (
+              <>
+                <button
+                  onClick={handleOpenModal}
+                  className="m-2 btn btn-success shadow rounded"
+                >
+                  Create your own Team?
+                </button>
+                <p className="text-center mb-2">OR</p>
+                <p className="p-2 bg-dark text-light">
+                  Join, below existing teams
+                </p>
+              </>
             ) : (
               <button
                 onClick={handleParticipation}
@@ -123,6 +154,48 @@ const EventDetail = () => {
               participants={participants}
             />
           </div>
+          {event.event_type === "team" && (
+            <div className="my-4">
+              <div className="table-responsive">
+                <table className="table table-striped table-hover shadow">
+                  <thead className="table-dark">
+                    <tr>
+                      <th>Team Name</th>
+                      <th>leader</th>
+                      <th>Roll no.</th>
+                      <th>Description</th>
+                      {isAdmin && <th>Action</th>}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {!team.length && (
+                      <span className="text-nowrap px-4">
+                        No team to show..
+                      </span>
+                    )}
+                    {team.map((row) => (
+                      <tr key={row._id} className="shadow-sm ">
+                        <td>{row.name}</td>
+                        <td>{row.created_by.name}</td>
+                        <td>{row.created_by.roll_no}</td>
+                        <td>{row.description}</td>
+                        {isAdmin && (
+                          <td>
+                            <button
+                              className="btn btn-danger"
+                              onClick={() => removeTeam(row._id)}
+                            >
+                              <i className="bx bx-trash"></i>
+                            </button>
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>
