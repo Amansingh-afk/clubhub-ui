@@ -1,15 +1,28 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { resetPassword } from "../../utils/api";
 
 const ResetPassword = () => {
+  const { token } = useParams();
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errormsg, setErrorMsg] = useState("");
 
-  const resetPassword = () => {
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
     const data = {
-      password: password,
-      confirmPassword: confirmPassword,
+      password,
+      confirmPassword,
     };
-    console.log(data);
+    try {
+      console.log(token);
+      await resetPassword(data, token);
+      navigate("/login");
+    } catch (err) {
+      setErrorMsg(err.response.data.message);
+      console.log(err.response);
+    }
   };
   return (
     <div className="container">
@@ -22,12 +35,15 @@ const ResetPassword = () => {
                 Reset your password :
               </div>
               <form className="p-4">
+                <p className="text-danger fs-6">{errormsg}</p>
                 <div className="form-floating mb-3">
                   <input
                     type="text"
                     id="newPassword"
                     placeholder="New Password"
-                    className="form-control shadow"
+                    className={`form-control shadow ${
+                      errormsg.length ? "is-invalid" : ""
+                    }`}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -44,8 +60,9 @@ const ResetPassword = () => {
                     type="text"
                     id="confirmPassword"
                     placeholder="Confirm Password"
-                    className="form-control shadow"
-                    value={confirmPassword}
+                    className={`form-control shadow ${
+                      errormsg.length ? "is-invalid" : ""
+                    }`}                    value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
@@ -58,7 +75,7 @@ const ResetPassword = () => {
                 </div>
                 <button
                   className="btn btn-primary mt-3 w-100"
-                  onClick={resetPassword}
+                  onClick={handleResetPassword}
                 >
                   Reset Password
                 </button>

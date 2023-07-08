@@ -50,6 +50,12 @@ const UserDetails = () => {
     setProfileImage(img);
   };
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login", { replace: true });
+  };
+
   const saveChanges = async (e) => {
     e.preventDefault();
     const userInfo = {
@@ -107,7 +113,6 @@ const UserDetails = () => {
                       <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
                         {user.name}
                       </h4>
-                      <p className="mb-0">{user.username}</p>
                       <div className="text-muted">
                         <small>bc/23/009</small>
                       </div>
@@ -130,11 +135,6 @@ const UserDetails = () => {
                     </div>
                   </div>
                 </div>
-                <ul className="nav nav-tabs">
-                  <li className="nav-item">
-                    <a className="active nav-link">Settings</a>
-                  </li>
-                </ul>
                 <div className="tab-content pt-3">
                   <div className="tab-pane active">
                     <form>
@@ -223,7 +223,7 @@ const UserDetails = () => {
                         className="btn btn-primary"
                         onClick={saveChanges}
                       >
-                        Save Changes
+                        <i className="bx bx-check-double"> </i> Save Changes
                       </button>
                     </form>
                   </div>
@@ -237,9 +237,9 @@ const UserDetails = () => {
           <div className="card mb-3">
             <div className="card-body">
               <div className="px-xl-3">
-                <button className="btn btn-block btn-outline-dark">
-                  <i className="bx bx-sign-out"></i>
-                  <span>Logout</span>
+                <button className="btn btn-block btn-dark" onClick={logout}>
+                  <i className="bx bx-log-out"></i>{" "}
+                  Logout
                 </button>
               </div>
             </div>
@@ -251,7 +251,7 @@ const UserDetails = () => {
                 Get fast, free help from our friendly <b>BCA VI </b>
                 students.
               </p>
-              <button type="button" className="btn btn-outline-dark">
+              <button type="button" className="btn btn-dark">
                 Contact Us
               </button>
             </div>

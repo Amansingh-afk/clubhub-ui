@@ -61,7 +61,6 @@ const AdminDashboard = () => {
                   </p>
                 </div>
               </div>
-              {/* <EventCard event={events[0]} /> */}
             </div>
             <div className="col-md-6 p-0 px-md-2">
               <Carousel />

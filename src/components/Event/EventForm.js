@@ -149,9 +149,9 @@ const EventForm = ({ isEdit }) => {
                       Event Type :
                     </label>
                   </div>
-                  <div class="form-check form-check-inline col-sm-6 col-md-3 ms-3">
+                  <div className="form-check form-check-inline col-sm-6 col-md-3 ms-3">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="eventTypeOptions"
                       id="individualEvent"
@@ -159,13 +159,13 @@ const EventForm = ({ isEdit }) => {
                       checked={eventType === "individual"}
                       onChange={(e) => setEventType(e.target.value)}
                     />
-                    <label class="form-check-label" for="individualEvent">
+                    <label className="form-check-label" for="individualEvent">
                       Individual Event
                     </label>
                   </div>
-                  <div class="form-check form-check-inline col-sm-6 col-md-3 ms-3">
+                  <div className="form-check form-check-inline col-sm-6 col-md-3 ms-3">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="eventTypeOptions"
                       id="teamEvent"
@@ -173,7 +173,7 @@ const EventForm = ({ isEdit }) => {
                       checked={eventType === "team"}
                       onChange={(e) => setEventType(e.target.value)}
                     />
-                    <label class="form-check-label" for="teamEvent">
+                    <label className="form-check-label" for="teamEvent">
                       Team Event
                     </label>
                   </div>

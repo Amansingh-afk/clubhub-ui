@@ -26,6 +26,7 @@ import Layout from "./components/Layout/Layout";
 import Password from "./components/Profile/Password";
 import ResetPassword from "./components/Auth/ResetPassword";
 import TeamForm from "./components/Event/TeamForm";
+import NotFound from "./components/Common/NotFound";
 
 const Home = () => {
   const { isAuthenticated, user } = useAuth();
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/club/:id" element={<ClubDetail />} />
           <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />
           <Route path="/club/new" element={<ClubForm isEdit={false} />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Router>

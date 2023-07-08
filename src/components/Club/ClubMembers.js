@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { removeUserFromClub } from "../../utils/api";
 
-const ClubMembers = ({ clubId, isAdmin, members }) => {
+const ClubMembers = ({ clubId, isAdmin, members, setRefreshKey }) => {
 
   const removeMember = async(userId) => {
     const userInfo = {
@@ -12,6 +12,7 @@ const ClubMembers = ({ clubId, isAdmin, members }) => {
     try {
       await removeUserFromClub(userInfo);
       toast.warning("Member removed.");
+      setRefreshKey((prev)=> prev + 1);
     } catch (err) {
       toast.error(err.response.data.error);
     }
@@ -30,6 +31,9 @@ const ClubMembers = ({ clubId, isAdmin, members }) => {
           </tr>
         </thead>
         <tbody>
+        {!members.length && (
+            <span className="text-nowrap px-4">No members yet.</span>
+          )}
           {members.map((row) => (
             <tr key={row._id} className="shadow-sm">
               <td>

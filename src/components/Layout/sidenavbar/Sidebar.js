@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
@@ -11,8 +11,8 @@ const Sidebar = ({ isAdmin, isStudent, isMenuExpanded, onMenuToggle }) => {
       icon: "bx bx-home-alt-2",
       path: isAdmin ? "/admin" : isStudent ? "/student" : "/super-admin",
     },
-    { title: "Clubs", icon: "bx bx-group", path: "/club" },
-    { title: "Events", icon: "bx bx-calendar-event", path: "/event" },
+    { title: "Clubs", icon: "bx bx-crown", path: "/club" },
+    { title: "Events", icon: "bx bx-customize", path: "/event" },
     { title: "Profile", icon: "bx bx-user", path: "/profile" },
   ].filter(
     (item) => isAdmin || isStudent || ["Home", "Clubs"].includes(item.title)

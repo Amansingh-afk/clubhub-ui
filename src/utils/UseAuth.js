@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {
+  
   const navigate = useNavigate();
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

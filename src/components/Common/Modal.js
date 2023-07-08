@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         <div className="modal-content">
           <button
             type="button"
-            class="modal-close btn-close me-4"
+            className="modal-close btn-close me-4"
             aria-label="Close"
             onClick={onClose}
             ></button>

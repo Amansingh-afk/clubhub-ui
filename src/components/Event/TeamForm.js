@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Modal from "../Common/Modal";
-import useAuth from "../../utils/UseAuth";
 import { createTeam } from "../../utils/api";
 import { toast } from "react-toastify";
 
-const TeamForm = ({ isOpen, onClose, eventId }) => {
+import Modal from "../Common/Modal";
+
+const TeamForm = ({ isOpen, onClose, eventId, clubId, setRefreshKey }) => {
   const [teamName, setTeamName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -14,14 +14,18 @@ const TeamForm = ({ isOpen, onClose, eventId }) => {
       name: teamName,
       description,
       event_id: eventId,
+      clubId,
     };
-   try{
-     await createTeam(team);
-     toast.success("Team created ..")
-   } catch(err){
-    toast.warning(err.response.data.error);
-   }
+    try {
+      await createTeam(team);
+      setRefreshKey((prev) => prev + 1);
+      toast.success("Team created ..");
+    } catch (err) {
+      toast.warning(err.response.data.error);
+    }
+    onClose();
   };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="container">
@@ -52,7 +56,9 @@ const TeamForm = ({ isOpen, onClose, eventId }) => {
                       id="desc"
                       placeholder="Description"
                       value={description}
-                      onChange={(e) => setDescription(e.target.value.slice(0,30))}
+                      onChange={(e) =>
+                        setDescription(e.target.value.slice(0, 30))
+                      }
                       required
                     />
                     <label htmlFor="desc" className="form-label-sm">

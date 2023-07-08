@@ -43,7 +43,7 @@ const ClubDetail = () => {
       await subscribeMembership({ userId: user._id, clubId: id });
       setIsMember(true);
       toast.success("Subscribed !!");
-      setRefreshKey((prevKey) => prevKey + 1); // Trigger useEffect by updating the refreshKey state
+      setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
       toast.warning(err.response.data.error);
     }
@@ -55,7 +55,7 @@ const ClubDetail = () => {
       setIsMember(false);
       await unSubscribeMembership(clubId);
       toast.warning("UnSubsribed !!");
-      setRefreshKey((prevKey) => prevKey + 1); // Trigger useEffect by updating the refreshKey state
+      setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
       toast.error(err.response.data.error);
     }
@@ -73,14 +73,14 @@ const ClubDetail = () => {
           {user.role === "student" &&
             (isMember ? (
               <button className="btn btn-danger shadow m-1" onClick={leaveClub}>
-                Leave this Club
+                <i className="bx bx-log-out"></i>{" "} Leave Club
               </button>
             ) : (
               <button
                 className="btn btn-dark shadow m-1"
                 onClick={becomeMember}
               >
-                <i className="bx bx-plus"></i> Join this Club
+                <i className="bx bx-rocket"></i>{" "} Join Club
               </button>
             ))}
           {user?._id === club.admin_id && (
@@ -89,12 +89,10 @@ const ClubDetail = () => {
                 to={`/club/update/${id}`}
                 className="btn btn-primary shadow m-1"
               >
-                <i className="bx bx-edit-alt"></i> Edit club details
+                <i className="bx bx-edit-alt"></i>{" "} Edit club details
               </Link>
-              <Link
-                to="/event/new"
-                className="btn btn-primary shadow"
-              >
+              <Link to="/event/new" className="btn btn-primary shadow">
+                <i className="bx bx-customize"></i>{" "}
                 Create Event
               </Link>
             </div>
@@ -103,13 +101,13 @@ const ClubDetail = () => {
         <div className="col-sm-6 my-2">
           <div>
             <div className="float-end"></div>
-            <strong className="text-dark fs-1 text-decoration-underline">
+            <strong className="text-dark fs-1 text-decoration-underline text-capitalize">
               {club.name}
             </strong>
             <br />
             <span>
               <small>Club Admin's name : </small>
-              <span className="fs-5">{club.admin.name}</span>
+              <span className="fs-5 text-capitalize">{club.admin.name}</span>
             </span>{" "}
             <br />
             <span>
@@ -128,6 +126,7 @@ const ClubDetail = () => {
           clubId={id}
           isAdmin={user?._id === club.admin_id}
           members={clubMembers}
+          setRefreshKey={setRefreshKey}
         />
       </div>
     </div>

@@ -1,50 +1,81 @@
-.club_card{
+.club_card {
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.club_card:hover{
+.club_card:hover {
   transform: scale(1.02);
   /* box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5)  !important; */
 }
+.navbar-nav {
+  padding-right: 15px; /* adjust the value as per your requirement */
+}
+.nav-link {
+  border-radius: 0%;
+  transition: all 0.3s ease;
+}
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 4px;
-    max-width: 1200px; /* Adjust the width as needed */
-    width: 100%;
-    max-height: 80vh; /* Adjust the height as needed */
-    overflow-y: auto;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* limit the text of cards. */
-  .text-truncate-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .preserve-formatting {
-    white-space: pre-line; /* or white-space: pre; */
-  }
-  
-  
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 1200px; /* Adjust the width as needed */
+  width: 100%;
+  max-height: 80vh; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* limit the text of cards. */
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.preserve-formatting {
+  white-space: pre-line; /* or white-space: pre; */
+}
+
+.search-results-overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  min-height: 50px;
+  max-width: 500px;
+  z-index: 9999;
+  background-color: #fff;
+}
+
+.search-results-overlay ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results-overlay li {
+  padding: 8px;
+  background-color: #fff;
+}
+
+.search-results-overlay li:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}

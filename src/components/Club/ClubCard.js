@@ -9,17 +9,17 @@ const ClubCard = ({ club }) => {
   const link = `/club/${club._id}`;
 
   return (
-    <div class="card rounded shadow text-white club_card">
-  <img src={club.banner.url} className="card-img" height="220" />
-  <div class="card-img-overlay">
-    <h5 class="card-title text-decoration-underline">{club.name}</h5>
-    <div class="card-text-container">
-      <p class="card-text overflow-hidden text-truncate-2">{club.description}</p>
+    <div className="card rounded shadow text-white club_card">
+  <img src={club.banner.url} className="card-img" height="220" alt=""/>
+  <div className="card-img-overlay">
+    <h5 className="card-title text-decoration-underline text-capitalize">{club.name}</h5>
+    <div className="card-text-container">
+      <p className="card-text overflow-hidden text-truncate-2">{club.description}</p>
     </div>
-    <p class="card-text">Admin name: {club.adminName}</p>
-    <a href={link} class="btn btn-outline-light">
+    <p className="card-text ">Admin name: <span className="text-capitalize">{club.adminName}</span></p>
+    <Link to={link} className="btn btn-outline-light">
       Learn more
-    </a>
+    </Link>
   </div>
 </div>
 

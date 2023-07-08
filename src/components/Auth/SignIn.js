@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { createUser } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
-const courses = [
-  { name: "BCA", semesters: [1, 2, 3, 4, 5, 6] },
-  { name: "MBA", semesters: [1, 2, 3, 4] },
-];
+import { courses } from "../../config";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -58,9 +55,9 @@ const SignIn = () => {
           "Username must have alphabets and numbers only with a minimum length of 4 characters";
       }
     } else if (name === "password") {
-      if (!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/.test(value)) {
+      if (!/^.{8,}$/.test(value)) {
         error =
-          "Password must have alphabets, numerals, and at least one special character with a minimum length of 8 characters";
+          "Password is too short.";
       }
     }
 
@@ -86,6 +83,27 @@ const SignIn = () => {
       });
     } catch (err) {
       console.error(err);
+      if (err.response && err.response.data && err.response.data.message) {
+        const errorMessage = err.response.data.message;
+  
+        if (errorMessage.includes("username")) {
+          setUserData((prevData) => ({
+            ...prevData,
+            error: {
+              ...prevData.error,
+              username: errorMessage,
+            },
+          }));
+        } else if (errorMessage.includes("email")) {
+          setUserData((prevData) => ({
+            ...prevData,
+            error: {
+              ...prevData.error,
+              email: errorMessage,
+            },
+          }));
+        }
+      }
     }
   };
 
@@ -122,7 +140,7 @@ const SignIn = () => {
                         Full name
                       </label>
                       {userData.error?.fullname && (
-                        <small className="error-message">
+                        <small className="error-message text-danger">
                           {userData.error.fullname}
                         </small>
                       )}
@@ -188,7 +206,7 @@ const SignIn = () => {
                       className="btn btn-primary mt-3"
                       onClick={handleNext}
                     >
-                      Next
+                      <i className="bx bx-chevron-right"></i>
                     </button>
                   </>
                 )}
@@ -215,7 +233,7 @@ const SignIn = () => {
                         Username
                       </label>
                       {userData.error?.username && (
-                        <small className="error-message">
+                        <small className="error-message text-danger">
                           {userData.error.username}
                         </small>
                       )}
@@ -240,7 +258,7 @@ const SignIn = () => {
                         Email
                       </label>
                       {userData.error?.email && (
-                        <small className="error-message">
+                        <small className="error-message text-danger">
                           {userData.error.email}
                         </small>
                       )}
@@ -265,7 +283,7 @@ const SignIn = () => {
                         Password
                       </label>
                       {userData.error?.password && (
-                        <small className="error-message">
+                        <small className="error-message text-danger">
                           {userData.error.password}
                         </small>
                       )}
@@ -275,7 +293,7 @@ const SignIn = () => {
                       className="btn btn-primary mt-3"
                       onClick={handlePrevious}
                     >
-                      Previous
+                      <i className="bx bx-chevron-left"></i>
                     </button>
                     <button className="btn btn-primary ms-3 mt-3" type="submit">
                       Submit

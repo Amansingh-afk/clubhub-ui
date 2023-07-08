@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { removeUserFromEvent } from "../../utils/api";
 
-const EventMembers = ({ eventId, isAdmin, participants }) => {
+const EventMembers = ({ eventId, isAdmin, participants, isTeamEvent, setRefreshKey }) => {
   const removeParticpant = async (userId) => {
     const userInfo = {
       userId: userId,
@@ -9,6 +9,7 @@ const EventMembers = ({ eventId, isAdmin, participants }) => {
     };
     try {
       await removeUserFromEvent(userInfo);
+      setRefreshKey((prev) => prev + 1);
       toast.warning("Participant removed.");
     } catch (err) {
       toast.error(err.response.data.error);
@@ -24,11 +25,14 @@ const EventMembers = ({ eventId, isAdmin, participants }) => {
             <th>Roll no.</th>
             <th>Course</th>
             <th>Semester</th>
+            {isTeamEvent && <th>Team</th>}
             {isAdmin && <th>Action</th>}
           </tr>
         </thead>
         <tbody>
-          {!participants.length && <span className="text-nowrap px-4">No participants yet.</span>}
+          {!participants.length && (
+            <span className="text-nowrap px-4">No participants yet.</span>
+          )}
           {participants.map((row) => (
             <tr key={row._id} className="shadow-sm ">
               <td>
@@ -43,9 +47,10 @@ const EventMembers = ({ eventId, isAdmin, participants }) => {
                 </div>
               </td>
               <td>{row.name}</td>
-              <td>{row.roll_no}</td>
+              <td>{row.roll_no.toUpperCase()}</td>
               <td>{row.course}</td>
               <td>{row.semester}</td>
+              {isTeamEvent && <td>{row.team_name}</td> }
               {isAdmin && (
                 <td>
                   <button

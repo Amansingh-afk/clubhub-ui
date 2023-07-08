@@ -187,6 +187,7 @@ const ClubForm = ({ isEdit }) => {
             ></textarea>
           </div>
           <button type="submit" className="btn btn-primary shadow">
+            <i className="bx bx-party"></i>{" "}
             Submit
           </button>
         </form>

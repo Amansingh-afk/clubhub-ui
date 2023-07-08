@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Header.css";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../utils/UseAuth";
+import Search from "../../Common/Search";
 
 const Header = ({ isAdmin, isStudent }) => {
   const navigate = useNavigate();
@@ -11,7 +11,6 @@ const Header = ({ isAdmin, isStudent }) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   const toggleUserDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -34,7 +33,9 @@ const Header = ({ isAdmin, isStudent }) => {
     >
       <div className="container-fluid">
         <button
-          className="navbar-toggler btn-light"
+          className={`navbar-toggler btn-light ${
+            isMobileScreen() ? "bg-light" : ""
+          }`}
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -46,22 +47,7 @@ const Header = ({ isAdmin, isStudent }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <div className="search-wrapper my-4 mt-md-0">
-            <input className="search-input" type="text" placeholder="Search" />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-search"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="M21 21l-4.35-4.35"></path>
-            </svg>
-          </div>
+          <Search />
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none">
             {" "}
             <li className="nav-item">
@@ -83,7 +69,7 @@ const Header = ({ isAdmin, isStudent }) => {
             </li>
             <li className="nav-item ">
               <a className="nav-link text-white" href="/event">
-                <i className="bx bx-calendar-event"></i>
+                <i className="bx bx-customize"></i>
                 <span className="ms-2">Events</span>
               </a>
             </li>
@@ -98,14 +84,14 @@ const Header = ({ isAdmin, isStudent }) => {
 
         <div className="d-flex align-items-center">
           <div>
-            <a className="text-reset me-3 dropdown-toggle">
+            <div className="text-reset me-3 dropdown-toggle">
               <span className="badge rounded-pill badge-notification bg-danger">
-                1
+                1{/* <i className="bx bx-ghost"></i> */}
               </span>
-            </a>
+            </div>
           </div>
           <div className="dropdown">
-            <a
+            <Link
               className="dropdown-toggle d-flex align-items-center hidden-arrow"
               href="#"
               id="navbarDropdownMenuAvatar"
@@ -115,36 +101,30 @@ const Header = ({ isAdmin, isStudent }) => {
               onClick={toggleUserDropdown}
             >
               <img
-                src={user.avatar.url || "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png"}
-                onError={(e) => {
-                  e.target.src = "https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png";
-                }}
+                src={user.avatar.url}
                 className="rounded-circle"
                 height="40"
                 alt="profile logo"
                 loading="lazy"
               />
-            </a>
+            </Link>
             <ul
-              className={`dropdown-menu dropdown-menu-end ${
+              className={`dropdown-menu dropdown-menu-end bg-dark  ${
                 isDropdownOpen ? "show" : ""
               }`}
               aria-labelledby="navbarDropdownMenuAvatar"
             >
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item text-light bg-dark" to="/profile">
+                <i className="bx bx-user"></i>{" "}
                   My profile
-                </a>
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#" onClick={logout}>
+                <button className="dropdown-item text-light bg-dark" onClick={logout}>
+                <i className="bx bx-log-out"></i>{" "}
                   Logout
-                </a>
+                </button>
               </li>
             </ul>
           </div>

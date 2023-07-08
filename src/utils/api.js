@@ -13,6 +13,17 @@ export const login = async (credentials) => {
   return data;
 };
 
+export const updatePassword = async (data) => {
+  await api.put("/password/update", data);
+};
+
+export const deleteAccount = async () => {
+  await api.delete("/delete");
+};
+
+export const resetPassword = async (data, token) => {
+  await api.put(`/password/reset/${token}`, data);
+};
 export const createUser = async (userData) => {
   const { data } = await api.post("/register", userData);
   return data;
@@ -67,6 +78,10 @@ export const createEvent = async (eventData) => {
   await api.post("/create-event", eventData);
 };
 
+export const deleteEvent = async (eventId) => {
+  await api.delete(`/club/event/${eventId}`);
+};
+
 export const getAllEvents = async () => {
   const { data } = await api.get("/events");
   return data;
@@ -79,6 +94,10 @@ export const getEventData = async (eventId) => {
 
 export const updateEventDetails = async (eventId, eventData) => {
   await api.put(`/club/event/${eventId}`, eventData);
+};
+
+export const setEventAsCompleted = async (eventId, isCompleted) => {
+  await api.put(`/club/event/completed/${eventId}`, {isCompleted: isCompleted});
 };
 
 export const joinEvent = async (participantdata) => {
@@ -97,6 +116,10 @@ export const removeUserFromEvent = async (userInfo) => {
   await api.delete("/event/remove", { data: userInfo });
 };
 
-export const createTeam = async(team) => {
+export const createTeam = async (team) => {
   await api.post("/event/create/team", team);
-}
+};
+
+export const joinTeam = async (participantdata) => {
+  await api.post("/event/join/team", participantdata);
+};

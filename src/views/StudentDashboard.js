@@ -1,12 +1,12 @@
 import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import useAuth from "../utils/UseAuth";
+import { getAllClubs, getAllEvents } from "../utils/api";
 
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
 import EventCard from "../components/Event/EventCard";
-import { useEffect, useState } from "react";
-import { getAllClubs, getAllEvents } from "../utils/api";
 import Carousel from "../components/Common/Carousel";
 
 const StudentDashboard = () => {
@@ -60,7 +60,6 @@ const StudentDashboard = () => {
                   </p>
                 </div>
               </div>
-              {/* <EventCard event={events[0]} /> */}
             </div>
             <div className="col-md-6">
               <Carousel />
@@ -96,7 +95,7 @@ const StudentDashboard = () => {
           </div>
           {!events.length && <div>No events to show..</div>}
           {events.slice(0, eventsToShow).map((item) => (
-            <div className="col-lg-6" key={item._id}>
+            <div className="col-lg-6 px-0" key={item._id}>
               <EventCard event={item} />
             </div>
           ))}
