@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 import ImageSelector from "../Common/ImageSelector";
 import Spinner from "../Common/Spinner";
 import { createClub, getClubData, updateClubDetails } from "../../utils/api";
+import useAuth from "../../utils/UseAuth";
 
 const ClubForm = ({ isEdit }) => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const {user} = useAuth();
 
   const [bannerImage, setBannerImage] = useState(null);
   const [clubName, setClubName] = useState("");
@@ -51,7 +53,7 @@ const ClubForm = ({ isEdit }) => {
         navigate("/club");
       }
     } catch (err) {
-      toast.error(err.response.data.error);
+      toast.error(err.response.data.message);
     }
   };
 
@@ -167,7 +169,7 @@ const ClubForm = ({ isEdit }) => {
                   id="adminName"
                   value={adminName}
                   onChange={(e) => setAdminName(e.target.value)}
-                  readOnly={isEdit}
+                  readOnly={user.role === "super_admin" ? false : isEdit}
                   required
                 />
               </div>

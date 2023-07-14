@@ -28,6 +28,7 @@ const ImageSelector = ({ isOpen, onClose, onSelect }) => {
               <img
                 src={banner.url}
                 alt={banner.public_id}
+                style={{maxHeight: "245px", minWidth: "100%"}}
                 className={`img-fluid shadow rounded ${
                   selectedImage === banner.url ? "selected" : ""
                 }`}

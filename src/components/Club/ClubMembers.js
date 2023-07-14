@@ -48,7 +48,7 @@ const ClubMembers = ({ clubId, isAdmin, members, setRefreshKey }) => {
                 </div>
               </td>
               <td>{row.name}</td>
-              <td>{row.roll_no}</td>
+              <td>{row.roll_no.toUpperCase()}</td>
               <td>{row.course}</td>
               <td>{row.semester}</td>
               {isAdmin && (

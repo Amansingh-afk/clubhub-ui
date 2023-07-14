@@ -29,8 +29,10 @@ import TeamForm from "./components/Event/TeamForm";
 import NotFound from "./components/Common/NotFound";
 
 const Home = () => {
-  const { isAuthenticated, user } = useAuth();
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
+  const { isAuthenticated, user, isLoading } = useAuth();
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   return (
     <Navigate
       to={
@@ -54,7 +56,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
-        <Route path="/" element={ <Layout> <Outlet /> </Layout> } >
+        <Route path="/" element={ <Layout> <Outlet /> </Layout>} >
           <Route path="/super-admin" element={<SuperAdminDashboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/student" element={<StudentDashboard />} />
@@ -63,15 +65,18 @@ const App = () => {
           <Route path="/change-password" element={<Password />} />
           <Route path="/event" element={<Event />} />
           <Route path="/event/:id" element={<EventDetail />} />
-          <Route path="/event/new" element={<EventForm isEdit={false}/>} />
-          <Route path="/event/update/:id" element={<EventForm isEdit={true}/>} />
+          <Route path="/event/new" element={<EventForm isEdit={false} />} />
+          <Route
+            path="/event/update/:id"
+            element={<EventForm isEdit={true} />}
+          />
           <Route path="/event/team" element={<TeamForm />} />
           <Route path="/club" element={<Club />} />
           <Route path="/club/:id" element={<ClubDetail />} />
           <Route path="/club/update/:id" element={<ClubForm isEdit={true} />} />
           <Route path="/club/new" element={<ClubForm isEdit={false} />} />
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

@@ -70,34 +70,45 @@ const ClubDetail = () => {
             alt=""
             className="img-fluid shadow mb-3 rounded"
           />
+          {/* super-admin action buttons */}
+          {user.role === "super_admin" && (
+            <Link to={`/club/update/${id}`} className="btn btn-primary shadow m-1">
+              <i className="bx bx-edit-alt"></i> Edit club details
+            </Link>
+          )}
+
+          {/* student action buttons */}
           {user.role === "student" &&
             (isMember ? (
               <button className="btn btn-danger shadow m-1" onClick={leaveClub}>
-                <i className="bx bx-log-out"></i>{" "} Leave Club
+                <i className="bx bx-log-out"></i> Leave Club
               </button>
             ) : (
               <button
                 className="btn btn-dark shadow m-1"
                 onClick={becomeMember}
               >
-                <i className="bx bx-rocket"></i>{" "} Join Club
+                <i className="bx bx-rocket"></i> Join Club
               </button>
             ))}
+
+          {/* Admin action buttons  */}
           {user?._id === club.admin_id && (
             <div>
               <Link
                 to={`/club/update/${id}`}
                 className="btn btn-primary shadow m-1"
               >
-                <i className="bx bx-edit-alt"></i>{" "} Edit club details
+                <i className="bx bx-edit-alt"></i> Edit club details
               </Link>
               <Link to="/event/new" className="btn btn-primary shadow">
-                <i className="bx bx-customize"></i>{" "}
-                Create Event
+                <i className="bx bx-customize"></i> Create Event
               </Link>
             </div>
           )}
         </div>
+
+        {/* club details  */}
         <div className="col-sm-6 my-2">
           <div>
             <div className="float-end"></div>
