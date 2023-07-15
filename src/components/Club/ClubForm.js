@@ -75,13 +75,13 @@ const ClubForm = ({ isEdit }) => {
     }
   }, [isEdit]);
 
-  if (isEdit && clubName === "") {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
-  }
+  // if (isEdit && clubName === "") {
+  //   return (
+  //     <div>
+  //       <Spinner />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -169,7 +169,7 @@ const ClubForm = ({ isEdit }) => {
                   id="adminName"
                   value={adminName}
                   onChange={(e) => setAdminName(e.target.value)}
-                  readOnly={user.role === "super_admin" ? false : isEdit}
+                  readOnly={user?.role === "super_admin" ? false : isEdit}
                   required
                 />
               </div>

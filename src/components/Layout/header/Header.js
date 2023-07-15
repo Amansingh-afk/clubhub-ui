@@ -101,7 +101,7 @@ const Header = ({ isAdmin, isStudent }) => {
               onClick={toggleUserDropdown}
             >
               <img
-                src={user.avatar.url}
+                src={user?.avatar?.url}
                 className="rounded-circle"
                 height="40"
                 alt="profile logo"
