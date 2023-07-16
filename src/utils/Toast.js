@@ -5,10 +5,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Toast = () => {
+  const isMobileScreen = () => {
+    return window.innerWidth < 992; // Adjust the breakpoint as needed
+  };
+
   return (
     <div>
       <ToastContainer
-        position="top-center"
+        position={`${isMobileScreen() ? "bottom-center" : "top-right"}`}
         autoClose={2500}
         hideProgressBar={false}
         newestOnTop={false}

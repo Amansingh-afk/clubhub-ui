@@ -45,7 +45,7 @@ const ClubForm = ({ isEdit }) => {
     try {
       if (isEdit) {
         await updateClubDetails(id, newClub);
-        toast.success("Club details updated !");
+        toast.success("😁 Club details updated !");
         navigate(`/club/${id}`);
       } else {
         await createClub(newClub);

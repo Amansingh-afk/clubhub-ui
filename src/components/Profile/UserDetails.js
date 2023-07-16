@@ -65,10 +65,11 @@ const UserDetails = () => {
       phone_no: Number(phoneNo),
     };
     try {
+      e.preventDefault();
       const { user } = await updateUserDetails(userInfo);
       localStorage.removeItem("user");
       localStorage.setItem("user", JSON.stringify(user));
-      toast.success("Details updated successfully!");
+      await toast.success("Details updated successfully!");
       window.location.reload();
     } catch (err) {
       toast.error(err.response.data.error);

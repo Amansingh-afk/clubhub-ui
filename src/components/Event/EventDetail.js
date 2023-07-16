@@ -83,7 +83,7 @@ const EventDetail = () => {
   };
 
   const removeTeam = async () => {
-    toast.warning("This feature is in progress, SORRY!!");
+    toast.info("This feature is in progress, SORRY!!");
   };
 
   const joinEventTeam = async (teamId) => {

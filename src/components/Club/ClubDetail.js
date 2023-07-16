@@ -43,7 +43,7 @@ const ClubDetail = () => {
     try {
       await subscribeMembership({ userId: user._id, clubId: id });
       setIsMember(true);
-      toast.success("Subscribed !!");
+      toast.success("Joined the club !!");
       setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
       toast.warning(err.response.data.message);
@@ -55,7 +55,7 @@ const ClubDetail = () => {
       const clubId = id;
       setIsMember(false);
       await unSubscribeMembership(clubId);
-      toast.warning("UnSubsribed !!");
+      toast.warning("Left the club !!");
       setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
       toast.error(err.response.data.message);
@@ -65,7 +65,7 @@ const ClubDetail = () => {
   const handleDeleteClub = async () => {
     try {
       // await deleteClub(id);
-      toast.warning("This feature is not available yet !!");
+      toast.info("This feature is in progress, SORRY!!");
     } catch (err) {
       toast.error(err.response.data.message);
     }
