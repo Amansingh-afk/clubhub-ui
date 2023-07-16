@@ -67,6 +67,10 @@ export const updateClubDetails = async (clubId, clubData) => {
   await api.put(`/club/manage/${clubId}`, clubData);
 };
 
+export const deleteClub = async (clubId) => {
+  await api.delete(`/club/manage/${clubId}`);
+};
+
 export const subscribeMembership = async (memberInfo) => {
   await api.post("/subscribe", memberInfo);
 };
@@ -97,7 +101,9 @@ export const updateEventDetails = async (eventId, eventData) => {
 };
 
 export const setEventAsCompleted = async (eventId, isCompleted) => {
-  await api.put(`/club/event/completed/${eventId}`, {isCompleted: isCompleted});
+  await api.put(`/club/event/completed/${eventId}`, {
+    isCompleted: isCompleted,
+  });
 };
 
 export const joinEvent = async (participantdata) => {

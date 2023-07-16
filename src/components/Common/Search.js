@@ -57,7 +57,7 @@ const SearchBar = () => {
     <div className="container mt-2">
       <div className="row justify-content-center">
         <div className="col-lg-6">
-          <div className="input-group">
+          <div className="input-group shadow">
             <input
               type="text"
               className="form-control"
@@ -70,15 +70,15 @@ const SearchBar = () => {
             </button>
           </div>
           {showResults && (
-            <div className="search-results-overlay">
+            <div className="search-results-overlay bg-transparent">
               {results.length === 0 && (
-                <p className="p-2">Nothing to show...</p>
+                <p className="p-2 mt-2 rounded bg-dark text-light shadow">Nothing to show...</p>
               )}
-              <ul className="list-group mt-2">
+              <ul className="list-group mt-2 rounded">
                 {results.map((result, index) =>
                   user.role === "super_admin" && result.event_type ? null : (
                     <li
-                      className="list-group-item card-title"
+                      className="list-group-item card-title bg-dark text-light shadow"
                       key={index}
                       onClick={() => redirectUser(result)}
                     >

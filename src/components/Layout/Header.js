@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../../utils/UseAuth";
-import Search from "../../Common/Search";
+import useAuth from "../../utils/UseAuth";
+import Search from "../Common/Search";
 
 const Header = ({ isAdmin, isStudent }) => {
   const navigate = useNavigate();
@@ -109,7 +109,7 @@ const Header = ({ isAdmin, isStudent }) => {
               />
             </Link>
             <ul
-              className={`dropdown-menu dropdown-menu-end bg-dark  ${
+              className={`dropdown-menu dropdown-menu-end bg-dark shadow ${
                 isDropdownOpen ? "show" : ""
               }`}
               aria-labelledby="navbarDropdownMenuAvatar"

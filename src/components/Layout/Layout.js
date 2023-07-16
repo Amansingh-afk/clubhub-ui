@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import useAuth from "../../utils/UseAuth";
-import Header from "./header/Header";
+import Header from "./Header";
 import Sidebar from "./sidenavbar/Sidebar";
 import Spinner from "../Common/Spinner";
 

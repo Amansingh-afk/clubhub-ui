@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import ClubCard from "./ClubCard";
 import { getAdminClub, getAllClubs } from "../../utils/api";
+import ClubCard from "./ClubCard";
 import Spinner from "../Common/Spinner";
 
 const ClubList = ({ isAdmin, isStudent }) => {

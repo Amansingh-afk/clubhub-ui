@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 import {
+  deleteClub,
   getClubData,
   subscribeMembership,
   unSubscribeMembership,
@@ -45,7 +46,7 @@ const ClubDetail = () => {
       toast.success("Subscribed !!");
       setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
-      toast.warning(err.response.data.error);
+      toast.warning(err.response.data.message);
     }
   };
 
@@ -57,10 +58,17 @@ const ClubDetail = () => {
       toast.warning("UnSubsribed !!");
       setRefreshKey((prevKey) => prevKey + 1);
     } catch (err) {
-      toast.error(err.response.data.error);
+      toast.error(err.response.data.message);
     }
   };
 
+  const handleDeleteClub = async () => {
+    try {
+      await deleteClub(id);
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
   return (
     <div className="container">
       <div className="row">
@@ -72,9 +80,17 @@ const ClubDetail = () => {
           />
           {/* super-admin action buttons */}
           {user.role === "super_admin" && (
-            <Link to={`/club/update/${id}`} className="btn btn-primary shadow m-1">
-              <i className="bx bx-edit-alt"></i> Edit club details
-            </Link>
+            <>
+              <Link
+                to={`/club/update/${id}`}
+                className="btn btn-primary shadow m-1"
+              >
+                <i className="bx bx-edit-alt"></i> Edit club details
+              </Link>
+              <button className="btn btn-danger" onClick={handleDeleteClub}>
+                <i className="bx bx-trash"></i> Delete Club
+              </button>
+            </>
           )}
 
           {/* student action buttons */}

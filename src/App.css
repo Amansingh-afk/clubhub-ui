@@ -67,22 +67,6 @@
   background-color: #fff;
 }
 
-.search-results-overlay ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.search-results-overlay li {
-  padding: 8px;
-  background-color: #fff;
-}
-
-.search-results-overlay li:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-
 /*======================
     404 page
 =======================*/
