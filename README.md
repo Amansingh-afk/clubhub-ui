@@ -14,14 +14,15 @@ To get started with the frontend, follow these steps:
 
 1. Clone the repository:
 
-   ```git clone https://github.com/your-username/cms-frontend.git
-
+   ```git clone https://github.com/Amansingh-afk/clubhub-ui.git```
+   
 2.Install the dependencies:
 
 ```
-cd cms-frontend
+cd clubhub-ui
 npm install
 ```
+
 3.Start the development server:
 
 `npm start`
@@ -37,6 +38,8 @@ components/: Includes reusable components used throughout the application.
 views/: Defines the individual views/screens of the application such as student dashboard, admin dashboard, super admin dashboard.
 
 utils/: Provides utility functions or services, such as API interaction or authentication handling.
+
+config.js: Contains the constants used throughout the appilcation.
 
 App.js: Entry point of the application, where the main routing and component hierarchy is defined.
 
