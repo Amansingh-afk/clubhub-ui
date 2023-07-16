@@ -51,7 +51,11 @@ public/: Contains static assets, such as the HTML file and other resources.
 In the project directory, you can run the following scripts:
 
 npm start: Starts the development server.
+
 npm run build: Builds the application for production.
+
 npm test: Runs the test suites.
+
 npm run eject: Ejects the create-react-app configuration.
+
 Refer to the package.json file for more details on each script.
