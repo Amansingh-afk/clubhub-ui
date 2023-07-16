@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# CMS Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the frontend code for the CMS (Club Management System) project. It provides the user interface and client-side functionality for the CMS, allowing users to interact with the system.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- React: JavaScript library for building user interfaces
+- Axios: Promise-based HTTP client for making API requests
+- React Router: Routing library for React applications
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To get started with the frontend, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository:
 
-### `npm test`
+   ```git clone https://github.com/your-username/cms-frontend.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.Install the dependencies:
 
-### `npm run build`
+```
+cd cms-frontend
+npm install
+```
+3.Start the development server:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm start`
+The development server will start running on `http://localhost:3000`. You can access the application in your web browser.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Folder Structure
+The folder structure of the frontend repository is as follows:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+src/: Contains the main source code of the frontend.
 
-### `npm run eject`
+components/: Includes reusable components used throughout the application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+views/: Defines the individual views/screens of the application such as student dashboard, admin dashboard, super admin dashboard.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+utils/: Provides utility functions or services, such as API interaction or authentication handling.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+App.js: Entry point of the application, where the main routing and component hierarchy is defined.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+index.js: Renders the root component and sets up the React DOM.
 
-## Learn More
+public/: Contains static assets, such as the HTML file and other resources.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Available Scripts
+In the project directory, you can run the following scripts:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm start: Starts the development server.
+npm run build: Builds the application for production.
+npm test: Runs the test suites.
+npm run eject: Ejects the create-react-app configuration.
+Refer to the package.json file for more details on each script.
