@@ -64,7 +64,8 @@ const ClubDetail = () => {
 
   const handleDeleteClub = async () => {
     try {
-      await deleteClub(id);
+      // await deleteClub(id);
+      toast.warning("This feature is not available yet !!");
     } catch (err) {
       toast.error(err.response.data.message);
     }
