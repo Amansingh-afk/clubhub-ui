@@ -142,7 +142,7 @@ const UserDetails = () => {
                       <div className="row mb-3">
                         <div className="col-md-6">
                           <label htmlFor="fullName" className="form-label">
-                            Full Name:
+                            Full Name demo :
                           </label>
                           <input
                             type="text"

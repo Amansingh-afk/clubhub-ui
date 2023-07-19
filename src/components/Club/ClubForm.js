@@ -41,6 +41,7 @@ const ClubForm = ({ isEdit }) => {
       adminUsername: adminName,
       description,
       banner: bannerImage,
+      isSuperAdmin: user?.role === 'super-admin',
     };
     try {
       if (isEdit) {

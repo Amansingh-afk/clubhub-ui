@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-import useAuth from "../utils/UseAuth";
 import { getAllClubs, getAllEvents } from "../utils/api";
+import useAuth from "../utils/UseAuth";
 
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";

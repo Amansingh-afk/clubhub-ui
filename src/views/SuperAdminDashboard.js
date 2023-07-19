@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import useAuth from "../utils/UseAuth";
 import { getAllClubs } from "../utils/api";
+import useAuth from "../utils/UseAuth";
 
 import UnAuthorized from "../components/Common/UnAuthorized";
 import ClubCard from "../components/Club/ClubCard";
@@ -30,6 +31,10 @@ const SuperAdminDashboard = () => {
   }
   const handleViewMoreClubs = () => {
     setClubsToShow(clubsToShow + 4);
+  };
+
+  const handleDeleteClub = () => {
+    toast.info("This feature is in progress, SORRY!!");
   };
 
   if (!isAuthenticated) {
@@ -63,13 +68,14 @@ const SuperAdminDashboard = () => {
                   <i className="bx bx-plus"></i>
                   Create Club
                 </Link>
-                <Link
+                <button
+                  onClick={handleDeleteClub}
                   type="button"
                   className="btn btn-danger btn-rounded shadow"
                 >
                   <i className="bx bx-trash"></i>
                   Delete Club
-                </Link>
+                </button>
               </div>
             </div>
           </div>

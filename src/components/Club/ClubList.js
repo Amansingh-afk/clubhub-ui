@@ -16,6 +16,7 @@ const ClubList = ({ isAdmin, isStudent }) => {
 
         if (isAdmin) {
           const { club } = await getAdminClub();
+          console.log(club);
           setAdminClub({ ...club, loading: false });
         }
 
