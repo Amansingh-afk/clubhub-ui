@@ -56,7 +56,7 @@ const EventForm = ({ isEdit }) => {
     if (isEdit) {
       fetchEventData();
     }
-  }, [isEdit]);
+  }, [isEdit, id]);
 
   const handleInputChange = (e) => {
     setEventData({

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import ImageSelector from "../Common/ImageSelector";
-import Spinner from "../Common/Spinner";
 import { createClub, getClubData, updateClubDetails } from "../../utils/api";
 import useAuth from "../../utils/UseAuth";
 
@@ -74,7 +73,7 @@ const ClubForm = ({ isEdit }) => {
     if (isEdit) {
       fetchClubDetails();
     }
-  }, [isEdit]);
+  }, [isEdit,id]);
 
   // if (isEdit && clubName === "") {
   //   return (
@@ -126,7 +125,7 @@ const ClubForm = ({ isEdit }) => {
                       </span>
                       <img
                         src={bannerImage?.url}
-                        alt="banner image"
+                        alt={bannerImage?.url}
                         style={{ maxWidth: "100%" }}
                       />
                     </>

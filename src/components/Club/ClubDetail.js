@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 import {
-  deleteClub,
   getClubData,
   subscribeMembership,
   unSubscribeMembership,
