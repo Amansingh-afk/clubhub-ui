@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api/v1", // http://localhost:8000/api/v1/ ...
+  baseURL: "https://clubhub-backend.onrender.com/api/v1/", // http://localhost:8000/api/v1/ ...
   headers: {
     "Content-Type": "application/json",
   },
