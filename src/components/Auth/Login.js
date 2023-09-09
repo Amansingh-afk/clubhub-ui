@@ -18,7 +18,7 @@ const Login = () => {
       });
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      document.cookie = `token=${token}; path=/; secure; SameSite=None`;
+      // document.cookie = `token=${token}; path=/; secure; SameSite=None`;
 
       navigate(
         user.role === "admin"
