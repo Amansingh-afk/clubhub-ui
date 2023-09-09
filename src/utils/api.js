@@ -6,8 +6,12 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // Include cookies in the request
+  // withCredentials: true, 
 });
+
+// Manually get the cookie containing the token from the browser's cookie storage
+const tokenCookie = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
+api.defaults.headers.common['Cookie'] = `token=${tokenCookie}`;
 
 export const login = async (credentials) => {
   const { data } = await api.post("/login", credentials);
