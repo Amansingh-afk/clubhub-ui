@@ -3,13 +3,11 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "https://clubhub-backend.onrender.com/api/v1",
   // baseURL: "http://localhost:8000/api/v1",
-  // withCredentials: true, 
+  withCredentials: true, 
   headers: {
     "Content-Type": "application/json",
   },
 });
-
-axios.defaults.withCredentials = true;
 
 export const login = async (credentials) => {
   const { data } = await api.post("/login", credentials);
