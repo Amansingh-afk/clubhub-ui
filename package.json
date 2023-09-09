@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "allowedHosts": "all",
-  "proxy": "http://localhost:8000",
+  "proxy": "https://clubhub-backend.onrender.com/", 
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
