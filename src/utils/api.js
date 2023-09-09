@@ -9,15 +9,7 @@ const api = axios.create({
   },
   userToken: localStorage.getItem('token')
 });
-api.interceptors.request.use(function (config) {
-  const userToken = localStorage.getItem('token');
-  if (userToken) {
-    config.headers['userToken'] = userToken;
-  }
-  return config;
-}, function (error) {
-  return Promise.reject(error);
-});
+
 export const login = async (credentials) => {
   const { data } = await api.post("/login", credentials);
   return data;
