@@ -3,15 +3,13 @@ import axios from "axios";
 const api = axios.create({
   baseURL: "https://clubhub-backend.onrender.com/api/v1",
   // baseURL: "http://localhost:8000/api/v1",
+  // withCredentials: true, 
   headers: {
     "Content-Type": "application/json",
   },
-  // withCredentials: true, 
 });
 
-// Manually get the cookie containing the token from the browser's cookie storage
-const tokenCookie = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-api.defaults.headers.common['Cookie'] = `token=${tokenCookie}`;
+axios.defaults.withCredentials = true;
 
 export const login = async (credentials) => {
   const { data } = await api.post("/login", credentials);
